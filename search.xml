@@ -3,7 +3,9 @@
   <entry>
     <title>Copyright-beautify</title>
     <url>/2021/03/02/2025-6-3%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[
+\Gamma(z)=\int_0^\infty t^{z-1}e^{-t}dt.
+?sdjdj]]></content>
   </entry>
   <entry>
     <title>第一篇文章</title>
@@ -236,7 +238,7 @@ C=B \log _2\left(1+\frac{S}{n_0 B}\right)注意到，当我们增加带宽的时
       </categories>
   </entry>
   <entry>
-    <title>通信原理01</title>
+    <title>通信原理02</title>
     <url>/2025/06/21/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%8602/</url>
     <content><![CDATA[02 Chapter 2：信号的分析方法1 经典信号分析1.1 DC分量和AC分量信号 $s(t)$ 的DC分量是它在时间上的平均
 
@@ -252,6 +254,1110 @@ P=\lim _{T \rightarrow \infty} \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}}|f(t
 
 功率增益：对于一个系统，如果输入系统功率是 $PI$ ，输出功率 $P_O$ ，那么功率增益 $G{d B}=10 \log \left(P_I / P_O\right)$
 信噪比：$S N R_{d B}=10 \log (S / N)$
+
+
+\Gamma(z)=\int_0^\infty t^{z-1}e^{-t}dt.1.5 奇异函数（1）冲激函数
+
+\delta(t)= \begin{cases}\infty & t=0 \\ 0 & t \neq 0\end{cases}冲激函数的性质
+
+\left\{\begin{array}{l}
+\int_{-\infty}^{\infty} \delta(t) d t=1 \\
+\int_{-\infty}^{\infty} a \delta(t) d t=a \\
+\int_{-\infty}^{\infty} s(t) \delta\left(t-t_0\right) d t=s\left(t_0\right)
+\end{array}\right.（2）门函数
+
+G_\tau(t)= \begin{cases}1 & |t| \leq \frac{\tau}{2} \\ 0 & |t| \geq \frac{\tau}{2}\end{cases}（3）Sa函数
+
+S a(t)=\frac{\sin t}{t}或者
+
+S a\left(\frac{\pi t}{T_s}\right)=\frac{\sin \frac{\pi t}{T_s}}{\frac{\pi t}{T_s}}1.6 非周期信号的Fourier变换－Fourier分析公式（变换）
+
+F(\omega)=\int_{-\infty}^{\infty} f(t) e^{-j \omega t} d t－Fourier合成公式（反变换）
+
+f(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} F(j \omega) e^{j \omega t} d \omega利用Fourier变换，可以得到门函数的Fourier变换对
+
+G_\tau(t) \leftrightarrow \tau S a\left(\frac{\omega \tau}{2}\right)其中 $\tau$ 为门宽。同样Sa函数的Fourier变换对
+
+S a\left(\frac{\pi t}{T_s}\right) \leftrightarrow T_s G_{\frac{2 \pi}{T_s}}(\omega)1.7 卷积信号的卷积定义为
+
+f_1(t) * f_2(t)=\int_{-\infty}^{\infty} f_1(\tau) f_2(t-\tau) d \tau卷积运算的时频关系为1．时域卷积频域相乘
+
+f_1(t) * f_2(t) \leftrightarrow F_1(\omega) F_2(\omega)2．时域相乘，频域乘系数卷积
+
+f_1(t) f_2(t)=\frac{1}{2 \pi} F_1(\omega) * F_2(\omega)1.8 能量密度谱（ESD）与功率密度谱（PSD）时域计算能量信号 $f(t)$ 的能量的公式为
+
+E=\int_{-\infty}^{\infty} f^2(t) d t频域计算能量信号 $f(t)$ 的能量的公式为
+
+E=\frac{1}{2 \pi} \int_{-\infty}^{\infty}|F(\omega)|^2 d \omega定义能量密度谱ESD为
+
+E_f(\omega)=|F(\omega)|^2其意义是信号在单位频带中的能量，或者说信号能量在频带中的分布，单位是 $(\mathrm{J} / \mathrm{Hz})$时域计算功率信号 $f(t)$ 的功率的公式为
+
+P=\lim _{T \rightarrow \infty} \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f^2(t) d t频域计算功率信号 $f(t)$ 的功率的公式为
+
+P=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \lim _{T \rightarrow \infty} \frac{\left|F_T(\omega)\right|^2}{T} d \omega其中 $F_T(\omega)$ 是 $f_T(t)$ 的Fourier变换，而 $f_T(t)$ 是在区间 $\left[-\frac{T}{2}, \frac{T}{2}\right]$ 截断信号 $f(t)$ 生成的。定义功率密度谱PSD为
+
+P_f(\omega)=\lim _{T \rightarrow \infty} \frac{\left|F_T(\omega)\right|^2}{T}它的意义是单位频带中的平均功率，单位是 $(\mathrm{W} / \mathrm{Hz})$ESD和PSD有更好的计算方法，Wiener－Khinchin定理指出。能量信号的ESD是其ACF（自相关函数）的Fourier变换
+
+R(\tau) \leftrightarrow E_f(\omega)功率信号的PSD是其ACF的Fourier变换
+
+R(\tau) \leftrightarrow P_f(\omega)1.9 自相关函数ACF与互相关函数CCF能量信号的ACF为
+
+R(\tau)=\int_{-\infty}^{\infty} f(t) f(t+\tau) d t功率信号的ACF为
+
+R(\tau)=\lim _{T \rightarrow \infty} \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) f(t+\tau) d t能量信号的CCF为
+
+R_{12}(\tau)=\int_{-\infty}^{\infty} f_1(t) f_2(t+\tau) d t功率信号的CCF为
+
+R_{12}(\tau)=\lim _{T \rightarrow \infty} \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f_1(t) f_2(t+\tau) d t同时互相关函数满足
+
+R_{21}(\tau)=R_{12}(-\tau)2 统计信号分析这一部分将使用随机过程来描述信号
+2.1 随机过程随机过程在生活中十分常见，例如一周的气温可以是一个随机过程。在这七天里，每天的气温都是一个随机变量，七天的气温就是七个随机变量构成的集合：${X(1), X(2), \ldots, X(7)}$ ，或者可以写作 ${X(n), n \in[1,7]}$ 。这个时候，集合里的元素由变量 $n$ 索引，当确定好 $n$ 的时候，就得到一个随机变量。
+一个随机过程是一系列随机变量构成的集合，并由时间 $t$ 索引：${X(t), t \in T}$ 。如果时间 $t$ 是离散的，那么随机过程就是离散的，这个时候可以将随机过程中所有的随机变量列出来 ${X(0), X(1), X(2), \ldots}$ 。如果时间 $t$ 是连续的，那么随机过程就是连续的，这个时候可以看作由时间 $t$ 索引了无限个随机变量。当确定一个时间点 $t_0$ 的时候，我们得到了这个集合中的一个随机变量 $X\left(t_0\right)$ 。
+既然每个时间点都是一个随机变量，那么它就存在一个累积分布函数（CDF）和一个概率密度函数（PDF）。我们知道，CDF定义为随机变量取值小于等于某个值的概率，即
+
+F(x)=P[X \leq x]那么对于随机过程而言，如果我们确定某个时间点 $t_1$ ，得到一个随机变量 $X\left(t_1\right)$ ，它的CDF就是
+
+F_1\left(x_1, t_1\right)=P\left[X\left(t_1\right) \leq x_1\right]这个函数与两个值有关，一个是取值 $x_1$ ，一个是时间 $t_1$ 。所以，它可以看作在时间 $t_1$ ，随机变量 $X\left(t_1\right)$ 的取值小于等于 $x_1$ 的概率分布。
+那么PDF就是它的一阶偏导数
+
+\frac{\partial F_1\left(x_1, t_1\right)}{\partial x_1}=f_1\left(x_1, t_1\right)这也叫做随机过程的一维PDF。注意，当随机过程取不同时间点的时候，分布可能是不一样的，这也是为什么这里加上了角标 $f_1$ 和 $x_1$ 。 有些书上会写 $f_t(x, t)$ ，代表在时刻时服从的概率密度。
+如果我们取 n 个时间点，就有
+
+f_n\left(x_1, x_2, \ldots, x_n ; t_1, t_2, \ldots, t_n\right)=\frac{\partial^n F_n\left(x_1, x_2 \ldots, x_n ; t_1, t_2, \ldots, t_n\right)}{\partial x_1 \partial x_2 \ldots \partial x_n}这是随机过程的 $n$ 维PDF。 $n$ 取得越大，对随机过程的统计特性描述就越充分。
+2.2 随机过程的数字特征期望：随机过程的期望是对其中的随机变量进行期望运算，设随机过程 ${X(t), t \in T}$
+
+a(t)=E[X(t)]我们将随机过程中的随机变量求了期望，而时间变量仍然存在，所以期望是关于时间的函数。这是因为时间不同概率分布可能不同，则不同时间点的期望可能不同。
+方差：随机过程的方差定义为
+
+\sigma^2(t)=D[X(t)]=E\left\{\left[X(t)-E[X(t)]^2\right\}=E\left[X^2(t)\right]-E^2[X(t)]\right.由于同样的分布随时间可能变化的原因，方差也是时间的函数。ACF： ACF 定义为
+
+R\left(t_1, t_2\right)=E\left[X\left(t_1\right) X\left(t_2\right)\right]或者
+
+R(t, t+\tau)=E[X(t) X(t+\tau)]自协方差函数：自协方差函数定义为
+
+B\left(t_1, t_2\right)=E\left\{\left[X\left(t_1\right)-a\left(t_1\right)\right]\left[X\left(t_2\right)-a\left(t_2\right)\right]\right\}ACF 和自协方差函数还存在以下关系
+
+B\left(t_1, t_2\right)=R\left(t_1, t_2\right)-a\left(t_1\right) a\left(t_2\right)2.3 平棯随机过栓严平稳（平稳）：如果一个随机过程 $\xi(t)$ 的 n 维PDF满足
+
+f_n\left(x_1, x_2, \ldots, x_n ; t_1, t_2, \ldots, t_n\right)=f_n\left(x_1, x_2, \ldots, x_n ; t_1+\tau, t_2+\tau, \ldots, t_n+\tau\right)则称其是严平稳（平稳）的。我们注意到其一维PDF满足
+
+f_1\left(x_1 ; t_1\right)=f_1\left(x_1 ; t_1+\tau\right)也就是说任取一个起点 $t_1$ ，对于任意一个时间间隔之后的PDF都不变，那么一维PDF与时间就没有关系了。其二维PDF满足
+
+f_2\left(x_1, x_2 ; t_1, t_2\right)=f_2\left(x_1, x_2 ; t_1+\tau, t_2+\tau\right)也就是说任取两个不同的时间起点，在任意一个时间间隔后PDF都不变，那么二维PDF与选取的两个时间起点之差有关。宽平稳：如果随机过程的均值是常数， ACF 只与时间差 $\tau$ 有关，即
+
+E[X(t)]=a \quad R(t, t+\tau)=R(\tau)那么随机过程就是宽平稳的。不难发现，严平稳要求了其 n 维PDF的性质，而宽平稳只要求了其均值和方差（一阶和二阶矩），所以严平稳一定是宽平稳，宽平稳不一定是严平稳。
+平稳过程ACF的性质\begin{tabular}{|l|l|}\hline ACF &amp; 性质 \\hline$R(0)=E\left[X^2(t)\right]=S$ &amp; 平均功率 \\hline$R(\infty)=E[X(t)]=a^2$ &amp; 直流功率 \\hline$R(0)-R(\infty)=\sigma^2$ &amp; 交流功率 \\hline$R(\tau)=R(-\tau)$ &amp; 偶函数 \\hline$|R(\tau)| \leq R(0)$ &amp; ACF上界 \\hline\end{tabular}
+平稳过程的Wiener－Khinchin定理
+对于平稳随机过程，PSD是ACF的Fourier变换。即
+
+P_{\xi}(\omega)=\mathcal{F}\left[R_{\xi}(\tau)\right]反过来， ACF 是 PSD 的Fourier反变换
+
+P_{\xi}(\omega)=\mathcal{F}^{-1}\left[R_{\xi}(\tau)\right]2.4 遍历性
+我们定义随机过程的时间平均是
+
+\langle X(t)\rangle=\lim _{T \rightarrow \infty} \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} X(t) d t时间自相关函数是
+
+\langle X(t) X(t+\tau)\rangle=\lim _{T \rightarrow \infty} \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} X(t) X(t+\tau) d t如果满足时间平均等于统计平均（期望），即
+
+\langle X(t)\rangle=E[X(t)]=a时间自相关函数等于统计自相关函数，即
+
+\langle X(t) X(t+\tau)\rangle=E[X(t) X(t+\tau)]=R(\tau)那么就称随机过程是遍历的。遍历过程一定是平稳的，但平稳过程不一定遍历。
+2．5 Gaussian过程定义：对于一个随机过程 ${X(t), t \in T}$ ，如果任取 n 个时间点，得到的随机变量 $X\left(t_1\right), X\left(t_2\right), \ldots, X\left(t_n\right)$ 联合起来服从 n 维高斯分布，如果将 n 个随机变量写成一个向量 $X=\left[X\left(t_1\right), X\left(t_2\right), \ldots, X\left(t_n\right)\right]^T$
+
+f(\boldsymbol{x})=\frac{1}{\sqrt{\operatorname{det}(C)}(2 \pi)^{n / 2}} \exp \left\{-\frac{1}{2}(\boldsymbol{x}-\boldsymbol{\mu})^T C^{-1}(\boldsymbol{x}-\boldsymbol{\mu})\right\}其中 $C$ 为协方差矩阵，$\mu$ 为均值向量那么这个随机过程是Gaussian过程。上述n维Gaussian分布的表达式不做重点，重点在于其服从Gaussian分布，以及它有以下重要性质
+1．Gaussian过程宽平稳就严平稳2．Gaussian过程各时刻得到的随机变量 $X\left(t_1\right), X\left(t_2\right), \ldots, X\left(t_n\right)$ 都是独立的。3．多个高斯过程的线性组合还是高斯过程Gaussian分布的一维PDF就是上述只取一个时间点时的概率分布，其PDF为
+
+f(x)=\frac{1}{\sqrt{2 \pi} \sigma} \exp \left\{-\frac{(x-\mu)^2}{2 \sigma^2}\right\}这就是概率论中大家熟悉的一维Gaussian分布的表达式。其均值为 $\mu$ ，方差为 $\sigma^2$ ，一般记为 $x \sim N\left(\mu, \sigma^2\right)$ ，当 $\mu=0$ ， $\sigma^2=1$ 时又称作标准Gaussian分布
+Gaussian分布引出的有用函数：我们通过Gaussian分布还创造出了一些有用的函数。（1）Error函数我们定义Error函数为
+
+\operatorname{erf}(x)=\frac{2}{\sqrt{\pi}} \int_0^x e^{-z^2} \mathrm{~d} z这个函数满足 $\operatorname{erf}(-x)=-\operatorname{erf}(x), \operatorname{erf}(0)=0, \operatorname{erf}(\infty)=1$ 。（2）互补Error函数
+
+\operatorname{erfc}(x)=1-\operatorname{erf}(x)=\frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-z^2} \mathrm{~d} z这个函数满足 $\operatorname{erfc}(-x)=2-\operatorname{erfc}(x), \operatorname{erfc}(0)=1, \operatorname{erfc}(\infty)=0$ 。当 $x$ 非常大的时候，还可以通过以下公式近似计算 $\operatorname{erfc}(x)$ ．
+
+\operatorname{erfc}(x) \approx \frac{1}{\sqrt{\pi} x} e^{-x^2}（3）Q函数Q函数实际上就是标准Gaussian分布的右边积分
+
+Q(x)=\frac{1}{\sqrt{2 \pi}} \int_x^{\infty} \exp \left\{-\frac{y^2}{2}\right\} \mathrm{d} y这个函数满足 $Q(-x)=1-Q(x)(x&gt;0), Q(0)=0.5$当 x 非常大的时候，还可以用以下公式近似计算 $Q(x)$
+
+Q(x) \approx \frac{1}{\sqrt{2 \pi} x} \exp \left\{-\frac{x^2}{2}\right\}Gaussian分布，Error函数，互补Error函数和Q函数存在以下关系
+
+\left\{\begin{array}{l}
+Q(x)=\frac{1}{2} \operatorname{erfc}\left(\frac{x}{\sqrt{2}}\right) \\
+\operatorname{erfc}(x)=2 Q(\sqrt{2} x)
+\end{array}\right.以及当 $F(x)$ 表示Gaussian分布的CDF时
+
+F(x)= \begin{cases}\frac{1}{2}+\frac{1}{2} \operatorname{erf}\left(\frac{x-a}{\sqrt{2 a}}\right) & x \geq a \\ 1-\frac{1}{2} \operatorname{erfc}\left(\frac{x-a}{\sqrt{2 a}}\right) & x \leq a\end{cases}3 随机过程通过线性系统在信号与系统中，我们已经学过了信号通过LTI系统的知识。简单来说，信号 $f(t)$ 通过系统 $h(t)$ ，输出信号 $y(t)$ ，满足
+
+y(t)=f(t) * h(t)其中＊是卷积运算。换到频域就是
+
+Y(j \omega)=F(j \omega) H(j \omega)由于随机过程整体无法写成一个确定的表达式，或者说表达式中带有随机的成分，我们更关心其通过系统前后数字特征的变化。
+3.1 均值变化假设输入平稳随机过程 $\xi_i(t)$ 的均值 $E[\xi(t)]=a$ ，系统为 $h(t)$ 且因果，那么由卷积运算，其输出过程 $\xi_o(t)$ 为
+
+\xi_o(t)=\int_0^{\infty} h(\tau) \xi_i(t-\tau) \mathrm{d} \tau取均值得到
+
+\begin{aligned}
+E\left[\xi_o(t)\right] & =\int_0^{\infty} h(\tau) E\left[\xi_i(t-\tau)\right] \mathrm{d} \tau \\
+& =\int_0^{\infty} h(\tau) a d \tau \\
+& =a \int_0^{\infty} h(\tau) d \tau
+\end{aligned}注意到
+
+H(0)=\int_0^{\infty} h(t) e^{-j 0 t} d t=\int_0^{\infty} h(t) d t则
+
+E\left[\xi_o(t)\right]=a H(0)也就是说输出随机过程的均值是输入随机过程的均值乘上系统函数的初值。
+4 窄帶随机过程 $\theta$如果说一个随机过程，它的PSD集中在某个频率 $f_c$ 附近，$f_c$ 我们称作中心频率。且其带宽 $\Delta f$ 满足 $\Delta f \ll f_c$ ，那么这个随机过程就叫做窄带随机过程。
+研究窄带随机过程是因为大多数通信系统都是窄带系统，即满足系统带宽B和中心频率 $f_c, B \ll f_c$ ，那么随机过程通过这个系统也就成为了窄带随机过程。
+在众多随机过程中，拥有正弦波形式的随机过程是通信中最常用的。我们现在研究一个包络和相位都是随机的正弦波过程
+
+\xi(t)=a(t) \cos \left[\omega_c t+\phi(t)\right]其中 $a(t)$ 和 $\phi(t)$ 是某种随机包络和随机相位。现在我们利用关系 $\cos (A+B)=\cos A \cos B-\sin A \sin B$ 得到
+
+\begin{aligned}
+\xi(t) & =a(t) \cos \phi(t) \cos \omega_c t-a(t) \sin \phi(t) \sin \omega_c t \\
+& =\xi_c(t) \cos \omega_c t-\xi_s(t) \sin \omega_c t
+\end{aligned}与原随机过程相比，$\xi_c(t)$ 仍然乘以 $\cos \omega_c t$ ，因此是同相的，所以称其为同相分量。而 $\xi_s(t)$ 乘以 $\sin \omega_c t$ ，与 $\cos$ 相差 $90^{\circ}$ ，所以是与原表达式正交的，我们称其为正交分量。
+而且不难发现
+
+\phi(t)=\arctan \frac{\xi_s(t)}{\xi_c(t)}以及
+
+a(t)=\sqrt{\xi_c^2(t)+\xi_s^2(t)}现在，如果我们强制 $\xi(t)$ 是一个 0 均值，方差为 $\sigma^2$ 的平稳Gaussian窄带过程，那么将会得到以下结论：1．均值为 0 的窄带平稳Gaussian过程，同相分量和正交分量也是平稳Gaussian过程，且均值为 0 ，方差相同。2．其包络 $a(t)$ 服从Rayleigh分布，其一维PDF为
+
+f(a)=\frac{a}{\sigma^2} \exp \left[-\frac{a^2}{2 \sigma^2}\right]3．其相位 $\phi(t)$ 服从 $[-\pi, \pi]$ 或 $[0,2 \pi]$ 的均匀分布。4．相位与包络统计上独立。
+5 Gausssian白噪声与带限白噪声5.1 白噪声所谓白噪声就是PSD是一个常数的随机过程。对于单边 $\mathrm{PSD}\left(0 \leq \omega&lt;\infty\right.$ 不考虑负频率），我们记这个常数为 $n_0$ ，即 $P(\omega)=n_0$ 。而它的双边 $\mathrm{PSD}(-\infty&lt;\omega&lt;\infty$ 考虑负频率）为 $\frac{n_0}{2}$ ，即 $P(\omega)=\frac{n_0}{2}$ 。工程上单边PSD更常用。然而现实生活中没有理想的白噪声，只要在通信系统工作频率范围内其PSD是个常数，我们就认为它是白噪声。
+5．2 Gaussian白噪声现在我们再考虑将PSD为常数的特性加入Gaussian过程中，那么一个均值为 0 ，方差为 $\sigma^2, \operatorname{ACF}$ 为 $R_n(\tau)=\frac{n_0}{2} \delta(\tau)$ ，PSD为 $P_n(\omega)=\frac{n_0}{2}$ ，且平稳遍历的随机过程我们就称其为Gaussian白噪声。
+Gaussian白噪声的PDF服从Gaussian分布，而且满足不同时间的取到的随机变量独立。一般来讲，Gaussian白噪声是作为加性噪声出现的，即噪声叠加到信号上。加性Gaussian白噪声又缩写为AWGN。
+5.3 带限白噪声现实生活中的通信系统都是带宽有限的，当白噪声通过带宽有限的系统之后就叫做带限白噪声。例如通过低通系统就是低通白噪声，通过带通系统之后就是带通白噪声。
+假设双边 PSD 为 $P(\omega)=\frac{n_0}{2}$ 白噪声通过了一个带宽为 $B$ 的窄带带通系统，那么其功率为
+
+N=n_0 B]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>信号与系统01</title>
+    <url>/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F01/</url>
+    <content><![CDATA[系统概述系统的类型系统可以用数学模型和框图来表示。系统 $H[\cdot]$ 的基本数学模型是：
+
+y(\cdot)=H[f(\cdot)]称 $y(\cdot)$ 是系统的输出，$f(\cdot)$ 是系统的输入。因此对输入的处理与系统本身无任何关系。按照系统的数学模型类型，系统可以分为即时系统（输出（称为系统的响应）仅与当前的输入（称为系统的激励）有关）和动态系统（响应与过去和现在的激励都有关系），离散系统（激励和响应都是离散信号）和连续系统（激励和响应都是连续信号）。
+本课程主要讨论动态系统。
+系统的框图模型表示系统基本功能的常用单元有：积分器（连续）／延迟单元（离散），加法器，数乘器，延时器。它们的框图如下图（《信号与线性系统分析》）所示。
+通常的系统方程是左边为系统的输出结果，右边为系统的输入结果。给定已知框图，写出对应的方程的流程通常是：1．找到系统中的数个加法器，通过分析加法器的来源信号列出等式。2．将等式进行处理，最终得到 $f(t)$ 与 $y(t)$ 的方程。
+线性时不变系统的特性线性线性包含两个内容：齐次性和可加性。若系统满足：
+H[a f(\cdot)] = a H[f(\cdot)]称系统 $H(\cdot)$ 具有齐次性。若系统满足：
+
+H[f_1(\cdot) + f_2(\cdot)] = H[f_1(\cdot)] + H[f_2(\cdot)]称系统 $H(\cdot)$ 具有可加性。若以上两点系统 $H(\cdot)$ 都满足，即：
+H[C_1 f_1(\cdot) + C_2 f_2(\cdot)] = C_1 H[f_1(t)] + C_2 H[f_2(t)]称系统是线性的。动态系统的线性判别动态系统的响应 $y(\cdot)$ 与初始状态 $x(0)$ 和系统激励 $f(\cdot)$ 相关，称输入信号为 0（$f(t) = 0$）时，仅有初始状态引起的响应叫零输入响应 $y{\mathrm{zi}}$；初始状态为 0（$x(0) = 0$）时，仅由输入信号引起的响应叫零状态响应 $y{\mathrm{zs}}$。线性系统的全响应可以分解为这两种响应，称为线性系统的分解特性。如果系统有多个初始状态或/和多个输入信号，对于每一个输入的零状态响应和对于每一个零输入响应都呈现线性，称为零状态/零输入线性。如果一个系统具有分解特性、零状态/零输入线性特性，则该系统是线性系统。因此求解一个动态系统是否是线性系统的步骤：
+
+判断系统的零状态响应和零输入响应，将其相加判断是否满足分解性。
+令 $f_3(t) = f_1(t) + f_2(t)$，带入零状态响应和零输入响应，看两者是否分别满足线性。时不变性如果系统的参数都是不随着时间变化的常数，称这样的系统是时不变系统。判断方法：系统的输出与激励时移的时间无关，即：
+y(t-\tau) = H[f(t-\tau)], y(t) = H[f(t)]动态系统的时不变性判别
+找出系统的零状态。
+带入 $f(t-\tau)$，看系统结果是否是 $y(t-\tau)$。因果性如果视激励为响应产生的原因，零状态响应是激励的结果，那么响应不应该出现于激励之前。换句话说，系统的响应不应该与未来的激励有关，而只与现在和过去的激励有关。
+
+称这样的系统为因果系统，因果系统只在以时间为变量的系统中出现。
+对于系统输出$y(t_r)$，如果系统输入$x(t_i)$导致$t_i &gt; t_r$，此时系统的因果性被破坏，系统不具有因果性。
+稳定性如果系统的激励是有界的，且零状态响应也是有界的，称这样的系统是稳定系统。
+LTI系统分析方法概述描述系统的方法
+输入-输出法  只把输入变量和输出变量作为描述的因素，系统内部的结构视作黑箱。
+状态变量法  状态变量法用两个方程描述系统：
+  状态方程：描述系统内部状态与输入的关系。  输出方程： 描述系统内部响应与输入和状态变量之间的关系。
+
+
+求解系统方程的方法
+时域分析法  直接分析时间变量函数。连续系统通常由微分方程描述，离散系统通常由差分方程描述。因此直接求解对应的以时间为变量的方程。此外还有卷积方法。
+变换法  对时间变量函数转换为某个域中以其他因素作为变量的函数。
+
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>信号与系统02</title>
+    <url>/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F02/</url>
+    <content><![CDATA[信号的傅里叶级数信号变换分解、响应、叠加是信号与系统中最基础的信号处理方式。对信号的变换思路来源于时域内的信号 $f(t)$ 是以时间为变量的函数方程，在时域内噪声和有用信号往往是同时发生的，难以将噪声从信号中剥离，因此需要对信号进行变换，将信号从时域变换到频域（以频率为自变量的空间，频域中的信号可以表示为 $H(\omega)$），通过频率的不同就能利用滤波器将噪声剥离。
+正交分解正交函数与正交函数集在信号领域，如果两个信号在 $(t1, t_2)$ 内有 $\int{t_1}^{t_2} f_1(t) f_2(t) dt = 0$，称两个信号是正交的。如果有 $n$ 个函数构成的函数集：${\phi_1(t), \ldots, \phi_n(t)}$ 在 $(t_1, t_2)$ 内有：
+\int_{t_1}^{t_2} \phi_i(t) \phi_j(t) dt = \begin{cases}
+0, i \neq j \\
+K_i \neq 0, i = j
+\end{cases}称这是一个正交函数集。如果在这个函数集以外找不到任何的另外一个函数满足其与集内函数两两正交，称这个函数集是一个完备的正交函数集。三角函数集 ${1, cos n \Omega t, sin n \Omega t}$ 就是一个完备的正交函数集。
+信号的正交分解正交分解是最简单的一种信号分解方式，任何一个函数 $f_1(t)$ 都可以用 $n$ 个两两正交的函数的线性组合来近似。 有：
+f_1(t) = \sum C_i \phi_i(t) + f_e(t)这样的分解方式称为信号的正交分解，即将目标信号 $f_1(t)$ 分解为若干个正交信号的线性组合和误差信号 $f_e(t)$，简化表示方法：
+
+f_2(t) = \sum C_i \phi_i(t)此时的 $f_2(t)$ 不在具有限定性，是一个任意的函数。进一步得到任何一个信号 $f_1(t)$ 都可以用一个加权的信号 $f_2(t)$ 与误差信号 $f_e(t)$ 表示：
+f_1(t) = C_{12} f_2(t) + f_e(t)$C_{12}$ 是 $f_2(t)$ 的权重，称为相关系数。 $f_e(t)$ 是拟合误差。
+判断拟合是否准确的标准是拟合误差的均方值，当拟合误差的均方值最小时，信号拟合度最高，均方值表示为：
+\overline{\epsilon^{2}}=f_{\overline{\epsilon}}^{2}(t)=\frac{1}{t_{2}-t_{1}}\int_{t_{1}}^{t_{2}}f_{\epsilon}^{2}(t)dt对其求导令方程等于0，可以解出：
+
+\int_{t_{1}}^{t_{2}}\frac{d}{dC_{12}}[f_{1}^{2}(t)-2C_{12}f_{2}(t)f_{1}(t)+f_{2}^{2}(t)C_{12}^{2}]dt=0要使方程为0，必须每一项都为0，最终解得：
+C_{12}=\frac{\int_{t_{1}}^{t_{2}}f_{1}(t)f_{2}(t)dt}{\int_{t_{1}}^{t_{2}}f_{2}^{2}(t)dt}但是正交分解依赖于$f{2}(t)$的选取，如果于$f{2}(t)$选取的不恰当，拟合度往往不高，在分解时容易丢失$f{1}(t)$中有用的信息，因此需要其他更加准确的方法对信号进行分解。通过数学方法可知，当$f{2}(t)$是一个完备正交集的线性组合时，此时的拟合效果是最好的。
+信号的傅里叶级数周期信号$f(t)$在一个周期内可以展开为在完正交信号空间中的无穷级数。而三角函数集正好就是一个完备正交集，因此将信号分解为三角函数集是一种理想的正交分解方法。高等数学中，任何满足有界可积，有有限个间断点（狄利赫里条件）的函数都可以被描述为傅里叶级数：
+
+f(t)=a_{0}+\sum_{n=1}^{\infty}[a_{n}cos(n\omega_{1}t)+b_{n}sin(n\omega_{1}t)]在信号中，$a_{0}$称为直流分量，是函数在周期内的均值。
+a_{0}=\frac{1}{T}\int_{t_{0}}^{t_{0}+T}f(t)dt有时定义傅里叶级数的第一项为$\frac{a{0}}{2}$，此时$a{0}=\frac{2}{T}\int{t{0}}^{t{0}+T}f(t)dt$。$a{n}$称为基波分量，是一个偶函数:
+
+a_{n}=\frac{2}{T}\int_{t_{0}}^{t_{0}+T}f(t)cos(n\omega_{1}t)dt$b_{n}$称为谐波分量，是一个奇函数:
+b_{n}=\frac{2}{T}\int_{t_{0}}^{t_{0}+T}f(t)sin(n\omega_{1}t)dt傅里叶级数的三角变形
+余弦函数形式
+f(t)=c_{0}+\sum_{n=1}^{\infty}c_{n}cos(n\omega_{1}t+\phi_{n})其中$c{0}=a{0},c{n}=\sqrt{a{n}^{2}+b{n}^{2}},\phi{n}=arctan(-\frac{b{n}}{a{n}})$。参数
+幅值|F(n\omega_{1})|=\sqrt{a_{n}^{2}+b_{n}^{2}}
+相位
+\phi_{n}=arctan(-\frac{b_{n}}{a_{n}})傅里叶级数的指数形式周期函数能够被分解为指数信号的线性组合，因此:f(t)=\sum F(n\omega_{1})e^{jn\omega_{1}t}其中:
+F(n\omega_{1})=\frac{1}{T}\int_{0}^{T}f(t)e^{-jn\omega_{1}t}dt代入欧拉公式:F(n\omega_{1})=\frac{1}{T}\int_{0}^{T}f(t)cos(n\omega_{1}t)-jf(t)sin(n\omega_{1}t)dt可以得到
+
+$F(n\omega{1})=\frac{1}{2}(a{n}-jb_{n})$
+$a{n}=F{n}+F_{-n}$
+$b{n}=j(F{n}-F_{-n})$
+需要注意的是负的频率/角频率$-\omega_{1}$实际并不存在，只用作数学分析。
+参数
+
+幅值
+
+$|F(n\omega{1})|=\frac{1}{2}\sqrt{a{n}^{2}+b_{n}^{2}}$
+指数形式的幅值是三角形式幅值的$\frac{1}{2}$。
+指数形式的傅里叶级数的幅值函数是一个偶函数。
+
+相位
+
+$\phi{n}=arctan(-\frac{b{n}}{a_{n}})$
+指数形式的傅里叶级数的相位函数是一个奇函数。
+奇偶周期函数的傅里叶级数
+只需要将奇偶性带入$a{n},b{n}$即可。
+对于奇谐/偶谐函数则需要分$n$的奇偶性进行讨论。
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>信号与系统03</title>
+    <url>/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F03/</url>
+    <content><![CDATA[频谱·非周期信号的傅里叶变换信号的频谱已经知道信号可以分解为一系列正弦信号或者是数字数信号的和。以各分量（称为各谐波（Harmonics））对应的角频率为横坐标，以各分量的幅值或者是相位为纵坐标绘制图像，就能得到信号的频谱图像。频谱分为两种，单边频谱（描述三角形式的傅里叶级数）和双边频谱（描述指数形式的傅里叶级数）。要绘制其单边或双边的幅值频谱和相位频谱，才能够完整地描述一个傅里叶级数。单边频谱和双边频谱的关系：单边频谱的幅值是双边频谱的两倍：$A{uni} = 2A{bil} = \sqrt{a_n^2 + b_n^2}$两者相位相同：$\phi_n = arctan(-\frac{b_n}{a_n})$。例如下图中的三角形式傅里叶级数，可以用单边频谱表示后转换为图中的双边频谱。周期矩形脉冲信号的频谱对上图的周期脉冲信号求其傅里叶系数，得到：
+F(n\omega) = \frac{E\tau}{T_1}Sa(n\omega_1\frac{\tau}{2})称相邻两个分量间的距离为谐波距离，谐波距离为$\omega_1$，函数与横轴的第一个交点为主瓣宽度：$\frac{2\pi}{\tau}$。定义$\omega_1 = \frac{2\pi}{T_1}$, $T_1$为采样周期。可以发现主瓣宽度不变的前提下，$T_1$越大，谐波距离越小，谐波分布越稠密。当$T_1 \rightarrow \infty$时，整个频谱将趋于连续。因此周期信号的频谱是离散的，非周期信号的频谱是连续的。
+
+周期信号的功率归一化（R=1Ω）的周期信号的平均功率可以由如下的公式表示：
+P = \frac{1}{T}\int_0^T f(t)dt = \sum F(n\omega_1)^2傅里叶变换、反变换的推导对指数形式的傅里叶系数参数：F(n\omega_{1}) = \frac{1}{T}\int_{0}^{T} f(t)e^{-j n\omega_{1}t}dt两边同时乘上周期：
+TF(n\omega_{1}) = \int_{0}^{T} f(t)e^{-j n\omega_{1}t}dt当 $T \rightarrow \infty$ 时，左边 $TF(n\omega{1})$ 是一个有界函数，此时频谱连续 $n\omega{1} \rightarrow \omega$，定义频谱密度 $F(\omega)$：F(\omega) = lim_{T \rightarrow \infty} TF(n\omega_{1})
+= lim_{T \rightarrow \infty} \int_{0}^{T} f(t)e^{-j n\omega_{1}t}dt= \int f(t)e^{-j n\omega_{1}t}dt定义傅里叶变换算子 $F[\cdot]$:
+F[\cdot] = \int \cdot e^{-j\omega_{1}t}dt可得傅里叶变换：F[f(t)] = \int f(t)e^{-j\omega_{1}t}dt变换后的结果一定可以表示为复指数形式：
+F(\omega) = |F(\omega)|e^{j\phi(\omega)}称 $|F(\omega)|$ 为振幅，$\phi(\omega)$ 为相位角。对傅里叶变换的指数形式变形：f(t) = \sum F(\omega_{1})e^{j\omega_{1}t}
+= \sum \frac{F(\omega_{1})}{\omega_{1}}\omega_{1}e^{j\omega_{1}t}当 $T \rightarrow \infty$ 时，可证明 $lim{T \rightarrow \infty} \frac{F(n\omega{1})}{\omega_{1}} = \frac{F(\omega)}{2\pi}$，有：f(t) = \frac{1}{2\pi} \int F(\omega)e^{j\omega t} d\omega将如上式子定义为傅里叶反变换。因此：傅里叶变换：$F[f(t)] = \int f(t)e^{-j\omega_1t}dt$傅里叶反变换：$f(t) = \frac{1}{2\pi} \int F(\omega)e^{j\omega t}d\omega$此外应用奇偶分解和欧拉公式可以将傅里叶变换分解为：
+F(\omega) = 2\int f_e(t)\cos\omega tdt - 2j\int f_0(t)\sin\omega tdt傅里叶变换的性质
+
+
+$f(-t) \rightarrow F(-\omega)$
+$f(-t) \rightarrow F^*(\omega)$
+线性
+对偶性：$F(t) \rightarrow 2\pi f(-\omega)$
+变换操作：
+
+
+尺度变换：$f(at) \rightarrow \frac{1}{|a|}F(\frac{\omega}{a})$
+时移：$f(t-t_0) \rightarrow F(\omega)e^{-j\omega t_0}$
+综合：$f(at+b) = f(a(t+b/a)) \rightarrow \frac{1}{|a|}F(\frac{\omega}{a})e^{-j\omega\frac{b}{a}}$
+频移：$F(\omega+\omega_0) \rightarrow f(t)e^{-j\omega_0t}$
+
+
+导数：
+
+
+时域倒数：$f’(t) \rightarrow j\omega F(\omega)$
+频域导数：$F’(\omega) \rightarrow -jf(t)$
+
+
+积分：
+
+
+时域积分：$\int f(t)dt = \pi F(0)\delta(\omega) + \frac{F(\omega)}{j\omega}$
+
+常见非周期信号的傅里叶变换方波/门函数f(t)=E,-\frac{\tau}{2} 运用f(t)只在振幅处有值,因此:
+$$F(\omega)=\int_{-\frac{\tau}{2}}^{\frac{\tau}{2}} Ee^{-j\omega t}dt$$$$=E_{T}Sa(n\frac{\omega\tau}{2})直流信号f(t)=E由于直流信号不满足狄利克雷条件中的绝对可积,因此需要考虑其他方法对其做变换。当门函数的$\tau\rightarrow\infty$时,可以将门函数视作一个直流信号函数。
+
+F(\omega)=\lim_{\tau\rightarrow\infty}\int_{-\tau}^{\tau} Ee^{-j\omega t}dt$$$$=E\lim_{\tau\rightarrow\infty}\frac{2sin(\omega\tau)}{\omega}=2\pi E\delta(\omega)当$E=1$时,可以推导出
+F(\omega)=2\pi\delta(\omega)单位冲激函数
+F(\omega)=\int\delta(t)e^{-j\omega t}dt=1单位冲击偶函数
+F(\omega)=\int\delta'(t)e^{-j\omega t}dt=j\omega单侧指数函数
+f(t)=Ee^{-\alpha t}u(t)
+F(\omega)=\int Ee^{-\alpha t}u(t)dt=\int_{0}^{\infty} Ee^{-\alpha t}dt
+=\frac{E}{\alpha+j\omega}对其做复指数变换，就能得到其振幅和相位角：
+F(\omega)=\frac{E(\alpha-j\omega)}{\alpha^{2}+\omega^{2}}
+=\frac{E}{\sqrt{(\alpha^{2}+\omega^{2})}}e^{-j\arctan\frac{\omega}{\alpha}}符号函数
+sgn(t)=\begin{cases}1, t>0 \\ -1, t]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>信号与系统04</title>
+    <url>/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F04/</url>
+    <content><![CDATA[时域分析方法（微分/差分方程·卷积）微分/差分方程的解C_{0}\frac{d^{n}r(t)}{dt^{n}}+C_{1}\frac{d^{n-1}r(t)}{dt^{n-1}}+\ldots+C_{n}r(t)=E_{0}\frac{d^{m}e(t)}{dt^{m}}+E_{1}\frac{d^{m-1}e(t)}{dt^{m-1}}+\ldots+E_{m}e(t)这个方程的解由齐次解和特解两部分组成，齐次解与特解的和构成方程的全解。
+齐次解当输入全部为0时，得到的方程：$C{0}\frac{d^{n}r(t)}{dt^{n}}+C{1}\frac{d^{n-1}r(t)}{dt^{n-1}}+\ldots+C_{n}r(t)=0$，称之为特征方程。
+由特征方程得到的解称为齐次解。齐次解表示系统的零输入响应。
+求齐次解
+
+将特征方程转化为多项式并求解。
+
+对于微分方程的特征方程，其$n$阶微分项可以被换元为$\alpha^{n}$项，最终将特征方程转化为关于$\alpha$的$n$阶多项式。
+对于差分方程的特征方程，其$0$阶差分项$y(n)$可以被换元为关于$\alpha$的最高幂项，如此类推，最终将特征方程转化为关于$\alpha$的$n$阶多项式。
+
+根据多项式的解的个数和是否有重根，可以在下表中找到齐次解的形式，并带入多项式的解。
+
+将齐次解带入已知方程的特解（通常是系统的零状态响应），利用对应阶数项系数相等，求出齐次解中的常系数。
+
+
+不同特征根所对应的齐次解（微分方程）
+
+
+
+
+特征根
+齐次解$y_{p}(t)$
+
+
+
+
+单实根
+$e^{\alpha k}$
+
+
+r重实根
+$\sum C_{r-1}t^{r-1}e^{\alpha k}$
+
+
+
+
+不同特征根所对应的齐次解（差分方程）
+
+
+
+
+特征根
+齐次解$y_{p}(k)$
+
+
+
+
+单实根
+$C\alpha^{k}$
+
+
+r重实根
+$\sum C_{r-1}k^{r-1}\alpha^{k}$
+
+
+
+
+特解
+当激励为特定的值或者是函数时，方程的解称为特解。
+求特解
+
+带入具体的激励e(t)到系统的微分/差分方程。
+通过0阶项r(t)与激励中最高次数项之间系数的关系，用待定系数法猜想系统响应r(t)的结构。
+将r(t)的结构代回微分/差分方程，利用对应阶数项系数相等建立方程，解出r(t)结构中的常系数。如果已知了一些特解，求另一些特解，可以使用迭代法。即从h(0)开始列出微分方程，直到列到所求的特解对应的微分方程，将已知的特解带入，从而求出未知的特解。卷积\subsection*{零状态响应和零输入响应}在第二讲中对零状态响应和零输入响应以及线性关系进行过介绍，值得注意的是：零状态响应 $r{z s}(t)$ 和零输入响应 $r{z i}(t)$ 是相互独立的，即任何的输入只会影响到零状态响应中t的取值，而不会影响零输入响应中t的取值。零输入响应与系统方程的通解有关，零状态响应与系统方程的特解/非齐次解有关。两者可以通过解非齐次的微分/差分方程得到，解微分/差分方程的通用方法是卷积。卷积方法在连续系统中，定义 * 为卷积符号，定义卷积运算：g(t) = f(t) * h(t) = \int f(\tau) h(t - \tau) d\tau由于任何信号都可以被分解为 $n$ 个宽为 $\tau$，高为 $f(n\tau)$ 的门信号，在 $\tau$ 非常小的时候可以认为 $gate(t) = u’(t) \Delta \tau = \delta(t)$，因此任何的信号都可以用与冲激信号的卷积来表示：
+f(t) = \int f(\tau) \delta(t - \tau) d\tau几何意义两个信号 $f(t)$ 和 $h(t)$ 卷积的几何意义是：将其中一个图像左右翻转，然后从 $t = 0$ 处向右平移，平移过程中两个函数图像重叠面积的变化即为卷积图像。计算性质基本性质：交换律，结合律，分配率。
+
+微分和积分特性：
+g'(t) = f'(t) * h(t) = f(t) * h'(t)
+g^{(n-m)}(t) = f^{(n)}(t) * h^{(-m)}(t) = f^{(-m)}(t) * h^{(n)}(t)注：$g^{(n-m)}(t)$表示对$g(t)$作n次微分，m次积分。与冲激函数或阶跃函数卷积
+
+$f(t) * \delta(t) = f(t)$
+$f(t - t_0) * \delta(t - t_1) = f(t - t_0 - t_1)$
+$f(t) * \delta’(t) = f’(t)$卷积和在离散系统中，定义卷积和：f(k) = \sum f(i) h(k - i)任何的离散序列都可以用其自身与单位序列的卷积和表示：
+f(t) = \sum f(i) \delta(k - i) di卷积和也同样满足如上的计算性质和一些特殊的卷积结果：x(k) * \delta(k) = x(k)
+x(k) * \delta(k - 1) = x(k - 1)
+
+冲激响应和单位序列/取样响应一个连续的LTI系统零状态下输入单位冲激函数δ(t)，所引起的响应称为单位冲激响应，记作h(t)。冲激响应是e(t)=δ(t)时微分方程的特解。连续系统的零状态响应r_{zs}(t)可以表示为系统输入f(t)与单位冲击响应h(t)的卷积：
+r_{zs}(t) = f(t) * h(t)一个离散的LTI系统零状态下输入单位序列δ(k)，所引起的响应称为单位取样响应，记作h(k)。连续系统的零状态响应r_{zs}(k)可以表示为系统输入f(k)与单位冲击响应h(k)的卷积：
+
+r_{zs}(k) = f(k) * h(k)阶跃响应一个LTI系统零状态下输入单位阶跃函数u(t)所引起的响应称为单位阶跃响应，记作g(t)。由u(t)=∫δ(t)dt，
+g(t) = \int_{-\infty}^{t} h(t) dt卷积积分需要满足条件f{1}(τ)f{2}(t-τ)≠0，由于对阶跃函数u(t)，t&gt;0，因此阶跃响应通从用于决定卷积积分的上下限。
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>信号与系统05</title>
+    <url>/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F05/</url>
+    <content><![CDATA[拉普拉斯变换傅里叶变换的局限性1.使用傅里叶变换的条件是(f(t))必须要满足狄利赫里条件，即必须要满足有界、绝对可积和有有限个间断点三个条件。 有些信号并不满足绝对可积的条件，因此这些信号不能被应用傅里叶变换。2.傅里叶变换中的无穷积分比较困难。对于不满足狄利赫里条件的信号，可以用拉普拉斯变换进行处理。
+拉普拉斯变换的基本原理拉普拉斯变换的基本思想是将 $f(t)$ 乘上一个衰减系数： $AF$ (Attenuation factor) 以改善 $f(t)$ 的收敛性，使得 $f(t)AF$ 满足狄利赫里条件。通用的衰减系数是 $e^{-\sigma t}$。因此 $f(t)AF$ 的傅里叶变换写作：
+F(\omega) = F[(f(t)e^{-\sigma t})] = \int f(t)e^{-\sigma t}e^{-j\omega t}dt = \int f(t)e^{-(\sigma+j\omega)t}dt令 $s = (\sigma+j\omega)$，得到拉普拉斯变换的定义式：
+
+L[f(t)] = F(s) = F(\sigma+j\omega) = \int f(t)e^{-st}dt对于 LTI 系统，$f(t) = 0, t &lt; 0$，因此：
+L[f(t)] = F(s) = \int_0^\infty f(t)e^{-st}dt存在条件/收敛域保证拉普拉斯变换存在的条件是 $f(t)AF$ 满足满足狄利赫里条件。使得拉普拉斯变换成立的定义域称为收敛域 (RoC)。其应当是使得 $F(s)$ 存在的 $s$ 的范围。即 $f(t)$ 应当满足：
+
+\lim_{t \to \infty} f(t)e^{-\sigma t} = 0拉普拉斯反变换傅里叶反变换的定义式：
+f(t) = \frac{1}{2\pi} \int F(\omega)e^{j\omega t}d\omega带入 $f(t)e^{-\sigma t}$：
+
+f(t)e^{-\sigma t} = \frac{1}{2\pi} \int F(\sigma+j\omega)e^{j\omega t}d\omega将两边同时乘上 $e^{\sigma t}$：
+f(t) = \frac{1}{2\pi} \int F(\sigma+j\omega)e^{(\sigma+j\omega)t}d\omega带入 $s = \sigma+j\omega$ 并替换积分域，得到拉普拉斯反变换的定义式：
+f(t)=\frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty}F(s)e^{st}ds拉普拉斯变换对包含拉普拉斯变换和反变换的定义式。拉普拉斯变换的一般形式和反变换求解$f(t)$经拉普拉斯变换后的$F(s)$可以用多项式分数的形式进行表达：
+
+F(s)=\frac{A(s)}{B(s)}=\frac{\sum a_ms^m}{\sum b_ns^n}倘若$m&lt;n$，则$F(s)$是一个真分数，可以上下做多项式除法，得到：
+F(s)=\frac{a_m(s-z_1)(s-z_2)L(s-z_m)}{b_n(s-p_1)(s-p_2)L(s-p_n)}其中$z$表示$F(s)$的时域变换$f(t)$中的零点，$p$表示$F(s)$的时域变换$f(t)$中的指数系数，称为极点(Pole)。真分数意味着$F(s)$在无穷处收敛的概率很大，因此拉普拉斯变换后的式子具有高稳定性的特点。在单阶实数极点（Single-order real poles）的条件下：
+
+F(s)=\frac{A(s)}{(s-p_1)(s-p_2)L(s-p_n)}那么$F(s)$经过多项式除法/因式分解之后可以写作：
+F(s)=\sum_{i=1}^{\frac{k_i}{s-p_i}}+L可以得到：
+
+f(t)=\sum_{i=1}^n k_ie^{p_it}另外两种关于$F(s)$极点的情况：
+
+共轭复数
+多根本节不会讨论
+
+拉普拉斯变换的性质
+线性（同傅里叶变换）
+变换操作
+
+
+时移特性（同傅里叶变换）
+频移特性:$f(t)e^{-\alpha t}\rightarrow F(s+\alpha)$
+尺度变换（同傅里叶变换）
+
+
+积分和微分（时域）
+
+
+微分
+一阶微分:$\frac{df(t)}{dt}\rightarrow sF(s)-f(0_{-})$
+二阶微分:$\frac{d^{2}f(t)}{dt^{2}}\rightarrow s[sF(s)-f(0{-})]-f^{\prime}(0{-})$
+积分\int_{-\infty}^{t}f(\tau)d\tau\rightarrow\frac{F(s)}{s}+\frac{f^{(-1)}(0_{-})}{s}证明过程是将积分域分解为$[-\infty,0]$（表示初始状态）和$[0,t]$两段。
+
+
+积分和微分（频域）
+
+
+n阶微分
+L[t^{n}f(t)]=(-1)^{n}\frac{d^{n}F(s)}{ds^{n}}
+积分L[\frac{f(t)}{t}]=\int_{s}^{\infty}F(s)ds初值定理如果$f(t)$可积可被拉普拉斯变换，$f(t)$在$0_{+}$时刻的值（即初值）可以通过如下公式求得：
+f(0_{+})=lim_{s\rightarrow\infty}sF(s)终值定理如果$f(t)$可积可被拉普拉斯变换，$f(t)$在$\infty$时刻的值（即初值）可以通过如下公式求得：lim_{t\rightarrow\infty}f(t)=lim_{s\rightarrow0}sF(s)
+
+卷积理论
+拉普拉斯变换的卷积理论与傅里叶变换的卷积理论大抵相同，但是要注意对于时域中乘法的变换在频域中卷积项的参数是$\frac{1}{2\pi i}$。
+拉普拉斯变换法求解系统微分方程系统方程与全响应
+以时域函数 $f(t)$ 的拉普拉斯变换 $F(s)$ 的微分特性：
+一阶微分：$\frac{df(t)}{dt} \rightarrow sF(s) - f(0{-})$二阶微分：$\frac{d^{2}f(t)}{dt^{2}} \rightarrow s[sF(s) - f(0{-})] - f’(0_{-})$可以将微分方程以拉普拉斯变换从时域变换至频域。对于描述系统的微分方程将其做拉普拉斯变换：
+F_{out}(R(s),s) = F_{in}(E(s),s)
+
+带入初始条件和给定的题目条件中的一些 $r(t)$ 在特定时刻下的值，得到方程
+解出频域内的 $R(s)$
+用待定系数法展开多项式分式并用拉普拉斯反变换得到 $r(t)$零输入响应法1对于描述系统的微分方程，整理出关于 $R(s)$ 的等式：
+R(s) = F_{多项式分式}(r(t_{0}),s) + F_{多项式分式}(E(s),s)其中含有某些初始状态 $r(t{0})$ 的多项式分式是零输入响应，含有 $E(s)$ 的多项式分式是零状态响应。选取含有 $r(t{0})$ 的多项式分式，带入初始状态即可得到零输入响应 $R{zi}(s)$。利用拉普拉斯反变换得到 $r{zi}(t)$。法2
+令 $E(s) = 0$，重新写出此时的系统微分方程：
+F_{out}(R(s),s) = 0
+带入初始条件和给定的题目条件中的一些 $r(t)$ 在特定时刻下的值，得到方程
+
+解出频域内的 $R_{zi}(s)$
+
+用待定系数法展开多项式分式并用拉普拉斯反变换得到 $r_{zi}(t)$
+零状态响应法1对于描述系统的微分方程，整理出关于$R(s)$的等式：
+R(s) = F_{多项式分式}(r(t_0), s) + F_{多项式分式}(E(s), s)其中含有某些初始状态$r(t0)$的多项式分式是零输入响应，含有$E(s)$的多项式分式是零状态响应。选取带有系统输入$E(s)$的多项式分式，由$L(\delta(t)) \to 1$带入$E(s) = 1$，得到系统的零状态响应$R{zs}(s)$。利用拉普拉斯反变换得到$r{zs}(t)$法2求解到$r(t)$与$r{iz}(t)$后，利用
+
+r_{zs}(t) = r(t) - r_{iz}(t)间接求解到$r_{zs}(t)$。
+用拉普拉斯变换分析电路将电路中主要元件的电压电流关系进行拉普拉斯变换：电阻：
+R = \frac{V(s)}{I}电容：由时域：$v(t) = \frac{1}{C} \int i(t) dt$
+
+V(s) = I(s) \frac{1}{sC} + \frac{1}{s} v_c(0_-)电容的阻抗（容抗）：
+Z_c = \frac{1}{sC}电感：由时域：$v(t) = L \frac{di(t)}{dt}$
+
+V(s) = I(s) Ls - Li(0_-)
+
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>信号与系统06</title>
+    <url>/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F06/</url>
+    <content><![CDATA[Z变换Z变换的基本原理z变换的本质是通过采样使得离散信号可以被拉普拉斯变换，因此z变换的对象是离散信号/序列。其具体过程如下：由第六讲中提到的采样定理，对于连续序列x(t)，对其做自然采样：
+x_s(t) = x(t)\delta_T(t) \\
+= x(t)\sum \delta(t-nT) \\
+= \sum x(nT)\delta(t-nT)对其做拉普拉斯变换：
+X_s = L[x_s(t)]
+L[x_s(t)] = L[\sum x(nT)\delta(t-nT)] \\
+= \sum x(nT)L[\delta(t-nT)] \\
+= \sum x(nT)e^{-snT}令$z=e^{sT}$，得到z变换的定义式：
+
+X(z) = \sum x(n)z^{-n}在LTI系统中$n &gt; 0$，z变换的定义式可以写作：
+X(z) = \sum_{n=0}^{\infty} x(n)z^{-n}存在条件/收敛域使得序列$x(n)$能够被z变换的条件是序列$x(n)$收敛，即：
+
+\sum |x(n)z^{-n}| < \infty上述条件为z变换的收敛域。
+Z反变换Z变换式的一般形式序列$x(n)$的z变换式$X(z)$的一般形式可以写作由两个多项式组成的分式：
+X(z) = \frac{N(z)}{D(z)} = \frac{\sum b_mz^m}{\sum a_nz^n}当极点为一阶时,对等式两边同时除以z以提取常系数A:
+\frac{X(z)}{z} = \sum_{i=1}^{N} \frac{A_i}{z - z_i}其中$Ai = (z - z_i) \frac{X(z)}{z} |{z = z_i}$再乘上z:
+
+X(z) = \sum_{i=1}^{N} \frac{A_i z}{z - z_i}其中$A_i$为$x(n)$的常系数，$z_i$为底数。 对应的$x(n)$:
+x(n) = \sum_{i=0}^{\infty} A_i (z_i)^n, n \geq 0另外两种关于$X(z)$极点结构的情况:
+
+共轭复数
+多根本节不会讨论
+
+Z变换的性质
+线性（同傅里叶变换）
+
+线性需要要求两个序列收敛域有公共部分，如果两者没有公共收敛域，那么无法Z变换不具有线性。
+
+变换操作
+
+
+双侧时移时移前后信号形状保持不变。右移: $Z[x(n - m)] = z^{-m} X(z)$左移: $Z[x(n + m)] = z^{m} X(z)$
+
+单侧时移时移后图像$n &lt; 0$的部分被消去。右移:$Z[x(n - m)u(n)] = z^{-m} [X(z) - \sum{k=1}^{k-m} x(k) z^{-k}]$左移:$Z[x(n + m)u(n)] = z^{m} [X(z) - \sum{k=0}^{m-1} x(k) z^{-k}]$
+
+线性权重
+
+
+Z[nx(n)]= -z\frac{dX(z)}{dz} = -z^{-1}\frac{dX(z)}{dz^{-1}}
+尺度变换（z频域）
+Z[a^{n}x(n)] = X(\frac{z}{a})初值定理如果$x(n)$具有因果性且可以被Z变换，有：x(0) = \lim_{x \to \infty} X(z)终值定理如果$x(n)$具有因果性且可以被Z变换，有：
+\lim_{x \to \infty} x(n) = \lim_{z \to 1}[(z-1)X(z)]卷积理论Z[x(n)*h(n)] = X(z)H(z)
+Z[x(n)h(n)] = X(z)*H(z)收敛域为两者的公共收敛域：$max(R{xmin}, R{hmin}) &lt; |z| &lt; min(R{xmax}, R{hmax})$常见信号的Z变换单位冲激序列Z[\delta(n)] = \sum \delta(n)z^{-n} = 1
+
+收敛域：整个z域
+单位阶跃序列\begin{aligned}
+Z[u(n)] &= \sum u(n)z^{-n} \\
+&= 1 + z^{-1} + z^{-2} + \ldots + z^{-n} \\
+&= \frac{z}{z-1}
+\end{aligned}收敛域：|z| &gt; 1
+斜坡序列由单位阶跃序列的变换对：$Z[u(n)] = \sum_{n=0}^{\infty} z^{-n} = \frac{z}{z-1}$ 求导
+\begin{aligned}
+&\left(\sum_{n=0}^{\infty} z^{-n}\right)' = \left(\frac{z}{z-1}\right)' \\
+-&\sum_{n=0}^{\infty} nz^{-n+1} = -\frac{1}{(1-z^{-1})^2} \\
+&\sum_{n=0}^{\infty} nz^{-n+1} = \frac{1}{(1-z^{-1})^2} \\
+\text{两边同时乘以 } z^{-1}: &\quad Z[nu(n)] = \frac{z}{(z-1)^2}
+\end{aligned}收敛域：|z| &gt; 1推广：
+Z[n^m x(n)] = \left[z^{-1} \frac{d}{dz^{-1}}\right]^m X(z)指数序列
+\begin{aligned}
+Z[a^n u(n)] &= \sum a^n z^{-n} \\
+&= \sum \left(\frac{a}{z}\right)^n \\
+&= \lim_{n \to \infty} \frac{1 - \left(\frac{a}{z}\right)^{n+1}}{1 - \frac{a}{z}}
+\end{aligned}当 $|\frac{a}{z}| &lt; 1$ 时序列收敛，此时可以简化为：
+
+Z[a^n u(n)] = \frac{z}{z-a}收敛域：|z| &gt; |a|
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字信号处理03</title>
+    <url>/2025/06/23/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%8603/</url>
+    <content><![CDATA[离散时间傅里叶变换傅里叶变换的意义对于一个线性时不变系统，系统任意的输入的信号可以表示为一系列特征函数的线性组合。而傅里叶变换的本质在于求出这个线性组合中每一项的系数和这个线性组合本身的表示。而连续时间域中的傅里叶变换是离散域中线性组合概念的拓展。离散频域中的线性时不变系统的特征函数是指数函数（序列）：$e^{j\omega_k n}$，因此通过傅里叶变换，任何一个满足狄利克雷条件的离散时间域中的信号都可以表示为指数序列的线性组合：
+x[n] = \sum_k a_k e^{j\omega_k n}通过傅里叶变换，这个线性组合可以表示为：
+
+x[n] = \frac{1}{2\pi} \int_{-\pi}^{\pi} X(e^{j\omega}) e^{j\omega n}其中$X(j\omega)$为这个线性组合的系数，有：
+X(e^{j\omega}) = \sum_{n=-\infty}^{\infty} x[n] e^{-j\omega n}上述式子称为离散时间傅里叶变换。&gt; 由于等比数列的求和性质，变换的结果是一个连续频谱。
+其反变换即线性组合的表达式:
+x[n] = \frac{1}{2\pi} \int_{-\pi}^{\pi} X(e^{j\omega}) e^{j\omega n}由傅里叶变换，这个线性组合的特征函数 $e^{j\omega n}$ 在时域内表现为正弦函数 $cos\omega n$，因此这个线性组合在时域上表征为正弦函数的线性组合，这表示一个信号可以被分解为若干个特性不同的正弦波。
+连续和离散时间傅里叶变换的对比如下表所示：
+离散时间傅里叶变换的共轭性质序列的分解复分解同连续傅里叶变换，离散时间傅里叶变换也可以做复分解：
+X(e^{j\omega}) = X_R(e^{j\omega}) + jX_I(e^{j\omega})共轭分解定义序列 $x[n]$ 的共轭对称序列:
+
+x_e[n] = \frac{1}{2}(x[n] + x^*[−n])共轭对称序列的性质: $x_e[n] = x_e^*[−n]$序列 $x[n]$ 的共轭反对称序列:
+x_o[n] = \frac{1}{2}(x[n] - x^*[−n])共轭反对称序列的性质: $x_o[n] = -x_o^*[−n]$任何一个序列 $x[n]$ 可以表示为其共轭对称和共轭反对称序列的和：
+
+x[n] = x_e[n] + x_o[n]共轭分解对频域序列也同样适用。
+共轭信号的性质
+
+
+
+注解
+时域序列
+频域变换
+
+
+
+
+反向
+$x\backslash^{*}[n]$
+$X\backslash^{*}(e^{-j\omega})$
+
+
+
+$x\backslash^{*}[-n]$
+$X\backslash^{*}(e^{j\omega})$
+
+
+幅度分量为偶函数
+$
+X(e^{j\omega})
+$
+$
+X(e^{-j\omega})
+$
+
+
+相位分量为奇函数
+$\angle X(e^{j\omega})$
+$-\angle X(e^{-j\omega})$
+
+
+实部分量为偶函数
+$X_{R}(e^{j\omega})$
+$X_{R}(e^{-j\omega})$
+
+
+虚部分量为奇函数
+$X_{I}(e^{j\omega})$
+$-X_{I}(e^{-j\omega})$
+
+
+
+
+离散时间傅里叶变换的性质
+
+
+
+注解
+时域序列
+频域变换
+
+
+
+
+线性
+$ax[n] + by[n]$
+$aX(e^{j\omega}) + bY(e^{j\omega})$
+
+
+时移
+$x[n - n_{0}]$
+$e^{-j\omega n_{0}}X(e^{j\omega})$
+
+
+频移
+$e^{j\omega_{0}n}x[n]$
+$X(e^{j(\omega - \omega_{0})})$
+
+
+反转
+$x[-n]$
+$X(e^{-j\omega})$
+
+
+频域微分
+$nx[n]$
+$j\frac{dX(e^{j\omega})}{d\omega}$
+
+
+
+
+卷积特性卷积特性时域卷积：
+x[n] * y[n] \Leftrightarrow X(e^{j\omega})Y(e^{j\omega})频域卷积：
+
+x[n]y[n] \Leftrightarrow \frac{1}{2\pi}X(e^{j\omega}) * Y(e^{j\omega}) = \frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\theta})Y(e^{j(\omega-\theta)}d\theta)]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字信号处理01</title>
+    <url>/2025/06/23/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%8601/</url>
+    <content><![CDATA[数字信号数字信号是时间离散、幅值离散的信号。但是在本课中为了简化分析，认为时间离散、幅值连续的信号也是数字信号。数字信号可以由序列进行表示：
+\ldots, x[-1], x[0], x[1], \ldots采样模拟信号是时间连续、幅值连续的信号。使模拟信号转变为数字信号的过程称为采样。采样过程可由如下公式表示：
+
+x[n] = x(t) |_{t=nT_s} = x(nT_s), n \in Z其中 $T_s$ 称为采样周期。
+常见的数字信号单位冲激序列\delta[n] = \begin{cases} 1, & n = 0 \\ 0, & others \end{cases}
+冲激序列的采样性质类比冲击信号的采样性质，可以发现任何的数字信号都可以表示为时移的单位冲激序列的线性组合。
+x[n] = \sum x[k]\delta[n-k]单位阶跃序列
+u[n] = \begin{cases} 1, & n \geq 0 \\ 0, & others \end{cases}u[n]
+![code](https://freeimghost.net/images/2025/06/23/20210919151704.png)
+指数序列
+$$x[n] = a^n如果底数$a$是一个复数:$a = Ae^{j\theta}$, 此时可以表示为：
+
+x[n] = A^n(cos\theta n + jsin\theta n)指数序列x[n]=a^n如果底数$a$是一个复数：$a=Ae^{j\theta}$,此时可以表示为：
+x[n]=A^n(cos\theta n+jsin\theta n)三角序列连续的三角信号可以表示为：
+x(t) = A\sin(\Omega t + \varphi)此时的角频率 $\Omega$ 称为模拟角频率，单位为 $\text{rad/s}$。对连续的三角信号进行采样，从而得到数字域的三角信号：
+
+x[n] = A\sin\left(2\pi fn/f_s + \varphi\right) = A\sin(\omega n + \varphi)其中 $f_s$ 是采样频率，$\omega = \frac{2\pi f}{f_s}$，称为数字角频率，单位为 $\text{rad}$ 或者 $\text{rad/sample}$。数字角频率的理解由数字角频率：
+\omega = \frac{2\pi f}{f_s} = \frac{\Omega}{f_s}数字角频率可以看做是模拟角频率对其进行归一化的结果。又有角频率公式：$\omega = 2\pi f_d$，$f_d$ 称为数字频率。
+
+f_d = \frac{f}{f_s}数字频率可以看做是对模拟频率$f$进行归一化的结果。三角序列的周期性定义数字信号的周期性为：
+x(n) = x(n + N)对于数字三角信号（三角序列），有：
+
+Acos(\omega_0n + \varphi) = Acos(\omega_0(n + N) + \varphi) = Acos(\omega_0n + \omega_0N + \varphi), 0 \leq \omega_0 \leq 2\pi可以发现当$\omega_0N = 2\pi k, k \in Z$时上述式子成立。得到：
+\omega_0 = \frac{2\pi k}{N}, k = 0, 1, \ldots, N - 1也就是说，要想三角信号呈周期性：
+
+$\omega_0$必须是$\pi$的整数倍以保证数字周期$N$是一个自然数。即存在$N = \frac{2\pi k}{\omega_0}, k = 0, 1, \ldots, N - 1$则该序列为周期序列。
+只有N个不同的$\omega_0$使得三角信号呈周期性。
+对于复指数序列，使用欧拉公式变换为三角信号，由于cos和sin部分的数字角频率相等，因此可以按照上述判断标准进行判断。
+
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>信号与系统07</title>
+    <url>/2025/06/23/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F07/</url>
+    <content><![CDATA[系统方程系统方程概述对于一个有输入和输出的系统，可以通过观察系统输入和输出的关系来建立描述系统的方程，在拉普拉斯变换的s域下，系统方程可以表述为系统输出与输入之比：
+H(s) = \frac{R(s)}{E(s)}也可以按照时域分析方法中的理解，当 $e(t) = \delta(t)$ 时，其拉普拉斯变换为1，因此系统方程也是输入为冲激函数时的系统输出。
+类型策动点方程当系统是一个单口网络（One-port network，输入和输出在同一个端口的系统）时，系统方程称为策动点方程(Driving point function)。对于电路分析，单口网络的系统方程可以是 $H(s) = \frac{I(s)}{V(s)}$，也可以是 $H(s) = \frac{V(s)}{I(s)}$。
+传递函数当系统是一个两口网络时，此时的系统方程称为传递函数（Transfer function）。分析时需要找到电路的输入和输出，作比即可得到传递函数。
+连接并联如果两个系统并联，新的系统方程为：$h(t) = h_1(t) + h_2(t)$，在s域内：
+H(s) = H_1(s) + H_2(s)串联/级联如果两个系统串联，新的系统方程为：$h(t) = h_1(t) * h_2(t)$，在s域内：
+
+H(s) = H_1(s)H_2(s)举例：放大器的并联和串联
+系统方程的结构如之前提到的拉普拉斯反变换和z反变换，由于系统输入和输出在s域内都以多项式表示，系统方程自然是两个多项式的比值：
+H(s) = \frac{R(s)}{E(s)} = K \frac{\Pi(s - z_i)}{\Pi(s - p_k)}其中$p_i$称为系统方程的极点，$z_k$称为系统方程的零点。
+在电路分析中，极点描述的对象是电路中电容和电感的个数，即系统方程的阶数。
+同理，离散系统的方程也可以写作两个多项式的比：
+H(z) = \frac{\sum b_r z^{-r}}{\sum a_k z^{-k}} = A_0 + \sum \frac{A_k z}{z - p_k}强迫响应和自由响应如果将系统的输入$E(s)$以多项式表示：$E(s) = \frac{\Pi(s - z_i)}{\Pi s - p_k}$，系统方程$H(s) = \frac{\Pi(s - z_j)}{\Pi s - p_i}$，由系统的零输入响应$R(s) = E(s)H(s)$：
+
+R(s) = \sum \frac{A_k}{s - p_k} + \sum \frac{A_i}{s - p_i}经过拉普拉斯反变换：
+r(t) = \sum A_k e^{p_k t} u(t) + \sum A_i e^{p_i t} u(t)可以发现$r(t)$受到两部分的影响：系统方程和输入信号：称$r(t)$受输入影响的部分为强迫响应，受系统方程影响的部分为自由响应。
+瞬态响应和稳态响应分析时域中的$r(t)$构成，表达式的常数项不会受到$t$变化的影响，$r(t)$的常数项称为稳态响应。$r(t)$中受到$t$影响的部分称为瞬态响应。
+系统稳定性s域图像由 $s = \sigma + j\omega$, 因此可以将任何一个值在以实部 $\sigma$ 为横轴，虚部 $j\omega$ 为纵轴的 s 域中的一个点来表示。在 s 域图像中，系统方程的极点以 $\times$ 表示，系统方程的零点以 $\bigcirc$ 表示。
+连续系统的稳定性在时域中有：
+\int |h(t)| dt < \infty满足上述条件的系统是稳定系统。
+在 s 域中，如果所有的极点都在 s 域图像的左侧，即 $\sigma &lt; 0$，满足系统稳定的条件。当所有极点都在虚轴上且为一阶时，这个系统是严格的稳定系统。
+
+离散系统的稳定性由$z=e^{sT}$，当$s=0$时，$z=1$，因此如果极点在z域的单位圆内，离散系统是稳定系统，在单位圆外，系统是非稳定系统。
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字信号处理05</title>
+    <url>/2025/06/23/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%8605/</url>
+    <content><![CDATA[离散傅里叶级数·离散傅里叶变换复指数序列的周期性$x[n] = e^{j\omega_0 n}$，由于$\omega_0 \in [0, 2\pi)$的周期性，因此有：$x[n] = e^{j\omega_0 n} = e^{j(\omega_0 + 2\pi k)n}$，令$\omega_0 N = 2\pi k, k \in Z$，有：
+x[n] = e^{j\omega_0 n} = e^{j(\omega_0 + 2\pi k)n} = x[n + N]复指数序列$x[n]$具有周期性，称$N$为其周期。
+由于$\omega_k = \frac{2\pi k}{N} \in [0, 2\pi)$，因此当序列周期为$N$时，当且仅当$k = 0, 1, 2, \ldots, N - 1$时存在$N$个不同的$\omega_k$。$N = \frac{2\pi k}{\omega_0}$。
+离散傅里叶级数（DFS）根据连续时间周期信号的傅里叶变换：
+x(t) = \sum_{k=-\infty}^{\infty} X(k\Omega_0) e^{jk\Omega_0 t}其中连续信号的角频率为：$\Omega_0 = \frac{2\pi}{T}$类比连续时间周期信号，设周期序列$\tilde{x}[n]: \tilde{x}[n] = \tilde{x}[n+rN], r \in Z$，有：
+
+\tilde{x}[n] = \sum_{k=-\infty}^{\infty} X(k\Omega_0) e^{j\frac{2\pi}{N}kn}由于满足条件的频率分量$\omega_k$只有$N$个：
+\tilde{x}[n] = \sum_{k=-\infty}^{\infty} X(k\Omega_0) e^{j\frac{2\pi}{N}kn}
+= \sum_{k=0}^{N-1} X(k\Omega_0) e^{j\frac{2\pi}{N}kn}= \frac{1}{N} \sum_{k=0}^{N-1} \tilde{X}[k] e^{j\frac{2\pi}{N}kn}其中$\tilde{X}[k]$为离散傅里叶级数系数，可反推得到：
+
+\tilde{X}[k] = \sum_{n=0}^{N-1} \tilde{x}[n] e^{-j\frac{2\pi}{N}kn}定义$W_N^{kn} = e^{-j(\frac{2\pi}{N})kn}$，有离散傅里叶级数分析：
+\tilde{X}[k]=\sum_{n=0}^{N-1}\tilde{x}[n]W_N^{kn}离散傅里叶级数合成：
+
+\tilde{x}[n]=\frac{1}{N}\sum_{k=0}^{N-1}\tilde{X}[k]W_N^{-kn}$W_N^{kn}$是复数的角度表示形式，一般计算时转化为z域中的坐标以方便计算。如:$W_4^2=e^{-j\frac{2\pi}{4}\times2}=-1$
+离散傅里叶级数的意义周期为$N$的序列可以表示为$N$个周期为$N$的复指数序列的线性组合。离散傅里叶级数与离散时间傅里叶变换（DTFT）的关系事实上，可以将离散傅里叶级数看作是对离散时间傅里叶变换结果$X(e^{j\omega})$以周期为$N$做延拓后，对其进行采样的结果。
+离散傅里叶级数与Z变换的关系给定Z变换：$X(z)|_{z=e^{j\omega}}=X(e^{j\omega})$，那么：
+\tilde{X}[k]=X(z)|_{z=e^{j(2\pi/N)k}}=X(e^{j(2\pi/N)k}), k=0,1,\ldots,N-1即离散傅里叶级数可以看做是在Z变换的单位圆上做均匀采样的结果。离散傅里叶级数的性质
+
+周期性：如果$\tilde{x}[n]$的周期为$N$，$\tilde{X}[k]$的周期同样为$N$。
+线性：$a\tilde{x}_1[n]+b\tilde{x}_2[n]\leftrightarrow a\tilde{X}_1[k]+b\tilde{X}_2[k]$
+时移：$\tilde{x}[n-m]\leftrightarrow W_N^{km}\tilde{X}[k]$
+频移：$\tilde{X}[k-l]\leftrightarrow W_N^{-nl}\tilde{x}[n]$
+对偶性：如果$\tilde{x}[n]\leftrightarrow\tilde{X}[k]$，那么$\tilde{X}[n]\leftrightarrow N\tilde{x}[-k]$周期卷积如果两个序列$\tilde{x}_1[n]$、$\tilde{x}_2[n]$有相同的周期$N$，有：
+\tilde{x}_1[n]\tilde{\otimes}\tilde{x}_2[n]=\sum_{m=0}^{N-1}\tilde{x}_1[m]\tilde{x}_2[n-m]\leftrightarrow\tilde{X}_1[k]\tilde{X}_2[k]周期卷积定理可以被矩阵化为：\tilde{x}[n] \tilde{\otimes} \tilde{y}[n] = \left[ \begin{array}{c} \tilde{z}[0] \\ \tilde{z}[1] \\ \cdots \\ \tilde{z}[N-2] \\ \tilde{z}[N-1] \end{array} \right] \mid_{periodic} = \left[ \begin{array}{ccccc} \tilde{y}[0] & \tilde{y}[N-1] & \cdots & \tilde{y}[2] & \tilde{y}[1] \\ \tilde{y}[1] & \tilde{y}[0] & \cdots & \tilde{y}[3] & \tilde{y}[2] \\ \cdots & \cdots & \cdots & \cdots & \cdots \\ \tilde{y}[N-2] & \tilde{y}[N-1] & \cdots & \tilde{y}[0] & \tilde{y}[N-1] \\ \tilde{y}[N-1] & \tilde{y}[N-2] & \cdots & \tilde{y}[1] & \tilde{y}[0] \end{array} \right] \left[ \begin{array}{c} \tilde{x}[0] \\ \tilde{x}[1] \\ \cdots \\ \tilde{x}[N-2] \\ \tilde{x}[N-1] \end{array} \right]可以发现矩阵 $Y$ 内部每一列的元素在进行周期性的位置轮换。周期卷积计算可以在 MATLAB® 中使用命令 toeplitz(x,y) 得到，其中 x, y 为两个周期序列单周期内所有元素组成的向量，两个向量长度相同。
+当两向量长度不等时，使用0进行补齐。离散傅里叶变换（DFT）当离散傅里叶序列变换的对象变成非周期有限长度序列时，此时的变换称为离散傅里叶变换（DFT）：
+
+X[k] = \sum_{n=0}^{N-1} x[n] W_N^{kn}, 0 \leq n \leq N-1其反变换为：
+x[n] = \frac{1}{N} \sum_{k=0}^{N-1} X[k] W_N^{-kn}, 0 \leq n \leq N-1
+
+
+离散傅里叶变换的性质
+
+线性：$a x_1[n] + b x_2[n] \leftrightarrow a X_1[k] + b X_2[k], 0 \leq k \leq N-1$
+2.对偶性：如果$x[n]\leftrightarrow X[k]$,那么$\tilde{X}[n]\leftrightarrow Nx[(-k)mod(N)],0\leq k\leq N-1$3.$N$点循环时移：$x[(n-m)mod(N)]\leftrightarrow W_N^kmX[k],0\leq k\leq N-1$
+
+可以发现：离散傅里叶级数是对离散时间傅里叶变换的结果进行采样，而一周期内的采样结果则为离散傅里叶变换的结果。对于Z变换，$z=re^{j\omega}$，如果选择$r=1$，那么Z变换将退化为离散时间傅里叶变换：
+X(e^{j\omega}) = X(z)\big|_{z=e^{j\omega}}因此，Z域单位圆上的任意一点表示$e^{j\omega}$。而离散傅里叶变换是对离散时间傅里叶变换一周期内的采样，因此离散傅里叶变换是在Z域单位圆上的均匀采样。\section*{循环卷积/圆周卷积}定义两个序列非周期序列的$N$点$x[n]$、$y[n]$循环卷积/圆周卷积（Circular shift）为：
+
+x[n]\otimes_Ny[n]=\sum_{m=0}^{N-1}x[m]y[(n-m)mod(N)]$x[n]$和$y[n]$具有相同的序列长度，两个序列长度如果不相同，使用0进行补齐。其物理意义是将其中一个序列反转（称为反褶）后，进行$N$点循环时移$m$次，与原序列线性卷积的结果。同样地，循环卷积也可以被矩阵化为：
+x[n]\otimes y[n]=\begin{bmatrix}
+z[0] \\
+z[1] \\
+\cdots \\
+z[N-2] \\
+z[N-1]
+\end{bmatrix}
+=
+\begin{bmatrix}
+y[0] & y[N-1] & \cdots & y[2] & y[1] \\
+y[1] & y[0] & \cdots & y[3] & y[2] \\
+\cdots & \cdots & \cdots & \cdots & \cdots \\
+y[N-2] & y[N-1] & \cdots & y[0] & y[N-1] \\
+y[N-1] & y[N-2] & \cdots & y[1] & y[0]
+\end{bmatrix}
+\begin{bmatrix}
+x[0] \\
+x[1] \\
+\cdots \\
+x[N-2] \\
+x[N-1]
+\end{bmatrix}利用矩阵化后的式子可以高效地在时域计算循环卷积。在频域上，循环卷积对应两个序列DFT的乘积：
+x[n] \otimes y[n] \leftrightarrow X[k]Y[k]当 $N$ 大于两个序列的长度时，直接将两个序列的长度用0填充到长度 $N$，再进行循环卷积。当 $N$ 小于两个序列的长度时，循环卷积时则会发生混叠（Aliasing）。长度为 $L$ 的序列 $x[n]$ 发生混叠的过程表示为：
+
+\begin{aligned}
+& x[0], x[1], \ldots, x[N], \ldots, x[L-2], x[L-1] \\
+& \downarrow \\
+& x[0] + x[N], x[1] + x[N+1], \ldots, x[N-1] + x[2N-1]
+\end{aligned}\section{循环卷积与线性卷积的关系}当循环卷积的点数大于 $2L-1$（即线性卷积的长度）时，其结果与线性卷积 $\left( x[n] \backslash ^ y[n] \right)$ 完全相同。\section*{循环卷积与周期卷积的关系}如果 $\tilde{x_1}[n]$ 、 $\tilde{x_2}[n]$ 分别对应是 $x_1[n]$ 、 $x_2[n]$ 以周期为 $N$ 的延拓，有：
+
+(x_1[n] \otimes_N x_2[n]) R_N = \tilde{x_1}[n] \tilde{\otimes}_N \tilde{x_2}[n]$R_N$ 表示以周期为 $N$ 的延拓。即在周期卷积对象的主值序列是循环卷积对象时， $N$ 点循环卷积是 $N$ 点周期卷积的主值序列。
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字信号处理07</title>
+    <url>/2025/06/23/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%8607/</url>
+    <content><![CDATA[数字滤波器·数字系统的表示数字系统的响应数字滤波器是一种处理离散时间信号的系统。数字信号 $x[n]$ 输入数字滤波器进行处理后生成输出信号 $y[n]$ 。这个过程可以用卷积定理表示为：
+y[n] = x[n] \otimes h[n] = \sum x[m] h[n-m]$h[n]$ 是数字系统在时域上的表示，称为冲激响应，也是系统输入信号为冲激序列时系统的输出结果。对(1)做离散时间傅里叶变换，可以得到：
+
+Y(e^{j\omega}) = X(e^{j\omega}) H(e^{j\omega})$H(e^{j\omega})$ 是 $h[n]$ 做离散时间傅里叶变换的结果，称为系统的频率响应。
+
+可以发现(2)成立的条件中包含 $h[n]$ 收敛的条件，如果 $h[n]$ 不收敛，则不存在其离散时间傅里叶变换的结果 $H(e^{j\omega})$ 。
+数字系统的表示除了上述两个表达式可以描述一个特定的数字系统外，一个特定的数字系统还可以使用如下两种方法进行表达：差分方程和传递函数。系统可以表示为线性常系数差分方程：
+\sum_{k=0}^{N} a_{k} y[n-k] = \sum_{k=0}^{M} b_{k} x[n-k], a_{0} \neq 0, b_{0} \neq 0对上式做Z变换，两边相比，得到系统的传递函数：
+
+H(z) = \frac{Y(z)}{X(z)} = \frac{\sum_{k=0}^{M} b_{k} z^{-k}}{\sum_{k=0}^{N} a_{k} z^{-k}}但是由于z变换成立的条件是要给出收敛域RoC，因此在未给出传递函数的前提下，其对应的差分方程可能有两个：
+
+右边序列：\sum_{k=0}^{N} a_{k} y[n-k] = \sum_{k=0}^{M} b_{k} x[n-k]此时数字系统是因果系统。
+左边序列:
+\sum_{k=0}^{N} a_{k} y[n-k] = - \sum_{k=-M}^{-1} b_{k} x[n+k]此时数字系统是非因果系统。传递函数的特征与冲激响应系统传递函数可以写作两个多项式的比：H(z) = \frac{b_0}{a_0} \frac{\prod_{k=1}^{M}(1-c_kz^{-1})}{\prod_{k=1}^{N}(1-b_kz^{-1})}其中 $M$ 对应差分方程右侧除去 $x[n]$ 外含有 $x$ 项的个数，$N$ 对应差分方程左侧除去 $y[n]$ 外含有 $y$ 项的个数，$c_k$ 表示零点，$d_k$ 表示极点。化简上式得到如下结构：
+H(z) = \sum_{r=0}^{M-N} B_r Z^{-r} + \sum_{k=1}^{N} \frac{A_k}{1-d_kz^{-1}}对其做 Z 反变换：h[n] = \sum_{r=0}^{M-N} B_r \delta[n-r] + \sum_{k=1}^{N} A_k (d_k)^n u[n]对上述反变换结果进行讨论：当 $N &gt; 0$ 时，差分方程左边有除了 $y[n]$ 的其他含 $y$ 项 $y[n-k]$，即此时系统方程当前输出由 $x$ 项、系统以前的输出 $y[n-k]$ 共同决定，系统含有反馈，此时系统方程为：
+h[n] = \sum_{r=0}^{M-N} B_r \delta[n-r] + \sum_{k=1}^{N} A_k (d_k)^n u[n]由于 $u[n]$ 是一个无限长度的序列，因此系统的冲激响应也是无限长度的，称这样的系统为无限冲激响应系统（IIR System）。当 $N = 0$ 时，差分方程左边只含有 $y[n]$，系统方程的当前输出只由输入 $x$ 决定，系统不含有反馈，此时系统方程为：h[n] = \sum_{r=0}^{M} B_r \delta[n-r]由于 $\delta[n-r]$ 长度有限，整个系统的冲激响应的长度是有限的，称这样的系统为有限冲激响应系统（FIR System）。|  | N | 差分方程左侧 | 有无反馈 | 冲激响应长度 || —- | —- | —- | —- | —- || IIR | N&gt;0 | 含有 $y[n-k]$ | 有 | 无限 || FIR | N=0 | 只有 $y[n]$ | 无 | 有限 |与频率响应根据Z变换和离散时间傅里叶的定义式，可以推出：
+H(e^{j\omega}) = H(z)|_{z=exp(j\omega)}因此系统的频率响应也可以写作多项式分式：H(e^{j\omega}) = \frac{b_0}{a_0} \frac{\Pi_{k=1}^{M}(1-c_ke^{-j\omega})}{\Pi_{k=1}^{N}(1-b_ke^{-j\omega})}
+
+
+使用MATLAB® 绘制系统的频率响应
+在 [0, 2π] 上生成若干个采样点，作为作图的 x 轴。
+使用函数 fft() 可以生成指定序列的离散傅里叶变换结果。 abs() 函数能够给出指定序列在每个采样点上的绝对值，即幅度。 angle() 函数可以生成指定序列在每个采样点上的相位。绘制其频率响应需要注总的是：
+·需要对$h[n]$进行周期延拓，方法是使用 zeros(1,L)创建一个长度为L的全0向量用 x=[x,zeros(1,L)] 对
+其填充。
+·使用 fft()函数求其FFT结果。 abs()求结果的绝对值得到幅频响应，angle()求FFT结果的相频响
+应。
+· 横轴应当为 [0:(N+L)]2pi/(N+L+1) 使得O-2π内每一格的长度为$\frac{2\pi}{N+L+1}$ (因为 $\theta:(\mathbb{N}+L)$ 有N+L+1个
+数)
+下面的示例程序展示了如何绘制$h[n]=Sa(0.1(n-50)),0\leq n\leq100$的幅频和相频响应曲线：```shellN=100; %100点FFTn=0:N;x=sinc(0.1(n-50));x=[x,zeros(1,1000)]; %对x周期延拓到长度为1000X=fft(x); %求其FFT/DFS结果（Amplitude Response）subplot(2,1,1);w=[0:(N+1000)]2*pi/(N+1001);%横轴，每一格表示2π/(N+1001)plot(w./pi,abs(X));  %取绝对值求幅频响应（Magnitude Response）并作π归一化title(‘Magnitude Response’);axis ([0 2 0 12]);xlabel(‘\omega/\pi’);subplot(2,1,2);plot(w./pi,angle(X)); % angle(X)表示求其相频响应title(‘Phase Response’);axis ([0 2 -4 4]);xlabel(‘\omega/\pi’);
+```
+给定系统Z域下的传递函数$H(z)=\frac{\sum b_kz^{-k}}{\sum a_kz^{-k}}$时，可以使用[H,w]=freqz(b,a,n)返回其频率响应 н和对应的π归一化的角频率横轴 w,其中 a 是$\sum a_kz^{-k}$由高次幂到低次幂排列时的系数向量，其中 b 是$\sum b_kz^{-k}$由高次幂到低次幂排列时的系数向量，n 为计算时所指定的N点FT的点数，缺省值为512。如下的例程中给出了如何绘制$H(z)=\frac{1-0.5z^{-1}}{1-2z^{-1}+z^{-2}}$的频率响应图：```shellb=[1,-0.5];a=[1,-2,1];[H,w]=freqz(b,a);plot(w,abs(X));  %取绝对值求幅频响应（Magnitude Response）title(‘Magnitude Response’);plot(w,angle(X)); % angle(X)表示求其相频响应title(‘Phase Response’);```
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字信号处理04</title>
+    <url>/2025/06/23/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%8604/</url>
+    <content><![CDATA[Z变换离散傅里叶变换的局限性对于离散傅里叶变换 $X(e^{j\omega}) = \sum x[n]e^{-j\omega n}$，要求原离散信号 $x(n)$ 满足狄利克雷条件，即要求变换中的求和项收敛：
+\sum |x[n]| < \infty有大量的信号不能满足这一条件。
+Z变换原理解决办法是在变换时添加一项 $r^{-n}$，以在保留原信号特征的同时改善原信号的收敛性。
+
+X_r(e^{j\omega}) = \sum x[n]r^{-n}e^{-j\omega n} = \sum x[n](re^{j\omega})^{-n}将：$re^{j\omega}$简记为 $z$，得到Z变换的变换公式：
+X(z) = \sum x[n]z^{-n}Z变换可以将输入序列转变为以指数序列构成的线性组合。
+收敛域此时要求改善后的信号满足狄利克雷条件，有：
+\sum |x[n]z^{-n}| < \infty满足这个条件的$z$的取值称为这个$Z$变换对的收敛域。
+可以发现$|z|$的取值决定了整个线性组合是否满足狄利克雷条件。
+当$|z| = 1$时，$Z$变换退化为离散傅里叶变换，满足这一条件的所有$\omega$的取值在傅里叶平面内构成一个单位圆：
+收敛特性序列的Z变换是否存在与收敛域有关，下面讨论不同类型序列的收敛域特征
+
+
+
+
+序列类型
+收敛域
+
+
+
+
+右边序列：$x[n]=a^nu[n]$
+$\
+z\
+&gt;\
+a\
+$
+
+
+左边序列：$x[n]=-a^nu[-n-1]$
+$\
+z\
+&lt;\
+a\
+$
+
+
+双边序列：$x[n]=a^nu[n]-b^nu[-n-1]$
+$\
+a\
+&lt;\
+z\
+&lt;\
+b\
+$
+
+
+
+
+由上表可以总结出Z变换的三条性质：
+
+当且仅当收敛域包括单位圆时，原信号才能同时满足稳定性和因果性，其离散傅里叶变换存在。
+收敛域以极点（指数序列的基底）、0、无穷划分边界。
+在收敛域内不存在任何极点。Z反变换定义式定义Z反变换为：x[n] = \frac{1}{2\pi j} \oint_{ROC} X(z) z^{n-1} dz反变换的定义式涉及到曲线积分、计算比较困难，由于LIT系统的系统方程都能够写作多项式分数的形式，因此对LIT系统方程而言通常不采用求解定义式的方式来求解反变换，而更多地采用如下方法求解反变换式：Z变换式的部分分式形式序列 $x(n)$ 的 $z$ 变换式 $X(z)$ 的一般形式可以写作由两个多项式组成的分式，称为部分分式：
+X(z) = \frac{N(z)}{D(z)} = \frac{\sum b_m z^m}{\sum a_n z^n}其中 $b_m$ 称为方程的零点，$a_m$ 称为方程的极点。当极点为一阶时, 对等式两边同时除以 $z$ 以提取常系数 $A$：\frac{X(z)}{z} = \sum_{i=1}^{N} \frac{A_i}{z - a_i}
+
+其中 $Ai = \left(z - a_i\right) \frac{X(z)}{z} \bigg|{z=a_i}$
+再乘上 $z$：
+X(z) = \sum_{i=1}^{N} \frac{A_{i}z}{z - a_{i}}其中 $A{i}$ 为 $x(n)$ 的常系数，$a{i}$ 为底数，也是极点。 对应的 $x(n)$：
+
+x(n) = \sum_{i=0}^{\infty} A_{i}(a_{i})^{n}u[n], n \geq 0需要注意的是，需要根据 $z - a_{i}$ 的正负对 Z 变换的收敛域进行讨论:
+
+当 $|z| &lt; (a{i}){min}$ 时，根据极点对应序列形式（收敛特性一小节中提到的表格），该项对应的指数序列为左边序列 $-A{i}(a{i})^{n}u[-n - 1]$。对应分式项 $\frac{A{i}z}{z - a{i}}$ 应写作 $-\frac{A{i}z}{z - a{i}}$ 以保证 $z - a_{i}$ 恒正。
+当 $|z| &gt; (a{i}){max}$ 时，根据极点对应序列形式，该项对应的指数序列为右边序列 $A{i}(a{i})^{n}u[n]$。 对应分式项应写作 $\frac{A{i}z}{z - a{i}}$ 以保证 $z - a_{i}$ 恒正。
+当 $a{min} &lt; |z| &lt; a{max}$ 时，根据极点对应序列形式，该项对应的指数序列为双边序列。离散系统的频率响应与传递函数离散系统的差分方程可以写作：\sum_{k=0}^{N} a_{k}y[n - k] = \sum_{k=0}^{M} b_{k}x[n - k]求得系统的传递函数为：
+H(z) = \frac{Y(z)}{X(z)} = \frac{\sum b_{m}z^{m}}{\sum a_{n}z^{n}}定义系统的频率响应为输入和输出的离散时间傅里叶变换结果之比：H(e^{j\omega}) = \frac{Y(e^{j\omega})}{X(e^{j\omega})}当系统的极点在单位圆内，且零点没有限制时，Z变换和离散时间傅里叶变换存在如下关系：
+H(z)\big|_{z=e^{j\omega}} = H(e^{j\omega})即 $z=e^{j\omega}$。带入频率响应，得到：H(e^{j\omega}) = \frac{b_0}{a_0} \frac{e^{j\omega(N-M)} \prod_{k=1}^{M} (e^{j\omega} - b_k)}{\prod_{k=1}^{N} (e^{j\omega} - a_k)}
+
+可以发现 $e^{j\omega} - b_k$ 和 $e^{j\omega} - a_k$ 都表示从点 $(b_k, 0)$ 或 $(a_k, 0)$ 到单位圆上一点的向量。
+将系统的频率响应转化为角度表示：$H(e^{j\omega}) = |H(e^{j\omega})|e^{j\angle H(e^{j\omega})}$，有：
+
+系统方程的模长/幅度值(Magnitude)：|H(e^{j\omega})| = \frac{\Pi\text{零向量的模长}}{\Pi\text{极向量的模长}}即系统方程频率响应$H(e^{j\omega})$的幅度值-频率响应，简称幅频响应。
+系统方程的相位：
+\angle H(e^{j\omega}) = \sum\text{零向量的角度} - \sum\text{极向量的角度}即系统方程频率响应$H(e^{j\omega})$的相位-频率响应，简称相频响应。
+
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字信号处理02</title>
+    <url>/2025/06/23/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%8602/</url>
+    <content><![CDATA[数字系统系统的特性线性线性系统满足两个特点：齐次性和可加性。
+齐次性如果$x[n] \to T \to y[n]$，有：
+Ax[n] \to T \to Ay[n]称系统具有齐次性。
+可加性如果$x_1[n] \to T \to y_1[n]$、$x_2[n] \to T \to y_2[n]$，有：
+
+x_1[n] + x_2[n] \to T \to y_1[n] + y_2[n]称系统具有可加性。同时满足齐次性和可加性的系统称为线性系统。
+时不变性系统中如果输入的时移会导致系统输出的同步时移，这样的系统称为时不变系统：如果$x[n] \rightarrow T \rightarrow y[n]$，有：
+x[n - n_0] \rightarrow T \rightarrow y[n - n_0]稳定性如果系统的输入和输出都有界，那么称系统是稳定的。
+
+x[n] < \infty, y[n] < \infty无记忆性当前系统的输出只依赖于当前的系统输入、而不依赖于之前的系统输入的系统称为无记忆系统。
+因果性当前系统的输出$y[n]$不会依赖于未来的系统输入:$x[n + n_0], n_0 \in Z^*$，这样的系统称为因果系统。无记忆系统一定是因果系统。非因果系统可以通过设置延时器转换为因果系统。
+卷积和定义离散信号的卷积称为卷积和：
+\sum_{k} x[k] h[n - k] = x[n] * h[n]单位采样响应对于给定的系统 $T[\cdot]$，当系统输入为单位冲击序列 $\delta[n]$ 时的系统输出 $h[n]$ 称为单位采样响应。
+
+h[n] = T[\delta[n]]对于线性系统：$x[n] \rightarrow T \rightarrow y[n]$，由齐次性：$x[0] \delta[n] \rightarrow T \rightarrow x[0] h[n]$由时不变性：$x[k] \delta[n - k] \rightarrow T \rightarrow x[k] h[n - k]$由单位冲激序列的采样特性：$x[n] = \sum x[k] \delta[n - k]$因此：
+y[n] = \sum x[k] h[n - k] = x[n] * h[n]即系统输出 $y[n]$ 可以表示为系统输入 $x[n]$ 与单位采样响应 $h[n]$ 的卷积。
+卷积和的运算性质
+线性：$x[n] \backslash  (h_1[n] + h_2[n]) = x[n] \backslash  h_1[n] + x[n] \backslash * h_2[n]$
+
+线性揭示了卷积和运算可以被并行化处理
+
+交换律：$x[n] \backslash  h_1[n] \backslash  h_2[n] = x[n] \backslash  h_2[n]  h_1[n]$
+结合律：$x[n] \backslash  h_1[n] \backslash  h_2[n] = x[n] \backslash  (h_1[n]  h_2[n])$数字系统方程数字系统可以由差分方程进行描述：\sum_{k=0}^{N} a_k y[n-k] = \sum_{k=0}^{M} b_k x[n-k]其中系统方程的阶 $N$ 由系统最前输出 $y[n-N]$ 决定。数字系统的频率响应·离散时间傅里叶变换类比于连续时间傅里叶变换，称 $e^{j\omega n}$ 为特征函数（Eigenfunction）。对于数字系统，当系统的输入为特征函数时：
+y[n] = \sum h[k] e^{j\omega(n-k)} = e^{j\omega n} \sum h[k] e^{-j\omega k}这个变换式称为离散时间傅里叶变换。称 $\sum h[k] e^{-j\omega k}$ 为数字系统的频率响应：H(e^{j\omega}) = \sum h[k] e^{-j\omega k}
+
+其反变换：$h[n]=\frac{1}{2\pi}\int_{-\pi}^\pi H(e^{j\omega})e^{j\omega n}d\omega$
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字信号处理06</title>
+    <url>/2025/06/23/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%8606/</url>
+    <content><![CDATA[快速傅里叶变换 快速傅里叶变换（FFT）是一种计算离散傅里叶变换的算法，其独有的计算方式能够大幅度减小离散傅里叶变换的计算量，使得离散傅里叶变换在计算机上具有可实现性。
+离散傅里叶变换的计算量回顾离散傅里叶变换：
+X[k] = \sum_{n=0}^{N-1} x[n] W_N^{kn}可以发现，计算一个离散傅里叶变换需要计算：
+
+N个$x[n]W$，即N次复数乘法
+N-1次$x[i]W + x[i+1]W$，即(N-1)次复数加法
+
+根据复数乘法原则$(a+jb)(c+jd)=(ac-bd)+j(ad+bc)$，和复数加法原则$(a+jb)+(c+jd)=(a+c)+j(b+d)$，可以发现：1次复数乘法与4个实数乘法和2个实数加法等价；1次复数加法和2次实数加法等价。
+因此计算一次离散傅里叶变换需要计算：
+
+$4N^2$次实数乘法
+$4N^2 - 2N$次实数加法其中实数乘法对计算资源的消耗非常的大，因此考虑使用别的算法以简化实数乘法的次数。时域抽取的快速傅里叶变换将离散傅里叶变换分为奇数和偶数两个段落：X[k] = \sum_{r=0}^{\frac{N}{2}-1} x[2r]W_N^{2rk} + \sum_{r=0}^{\frac{N}{2}-1} x[2r+1]W_N^{(2r+1)k}
+= \sum_{r=0}^{\frac{N}{2}-1} x[2r]W_N^{2rk} + W_N^k \sum_{r=0}^{\frac{N}{2}-1} x[2r+1]W_N^{2rk}根据复数的共轭对称性质：$W_N^{k(N-n)} = W_N^{kN}W_N^{-kn} = W_N^{-kn}$，前半段（$0 - N/2$）的表达式可以写作：X[k] = \sum_{r=0}^{\frac{N}{2}-1} x[2r]W_{N/2}^{rk} + W_N^k \sum_{r=0}^{\frac{N}{2}-1} x[2r+1]W_{N/2}^{rk}令$G[k] = \sum{r=0}^{\frac{N}{2}-1} x[2r]W{N/2}^{rk}$，$H[k] = \sum{r=0}^{\frac{N}{2}-1} x[2r+1]W{N/2}^{rk}$：
+X[k] = G[k] + W_N^kH[k], k = 0, 1, \ldots, N-1将前半段式子的下标加上$N/2$考虑后半段式子的和，由于$W_N^{k+N/2} = -1$，因此：X[k+N/2] = G[k] - W_N^kH[k], k = 0, 1, \ldots, N-1综合两段，得到时域抽取的快速傅里叶变换：
+
+X[k]=G[k]+W_N^kH[k],k=0,1,\ldots,N/2-1X[k+N/2]=G[k]-W_N^kH[k],k=0,1,\ldots,N/2-1可以将整个序列继续折中细分成多个小部分，每个部分计算蝶形结构。在为2的次方数时，使用折中法正好可以使得最终细分到相邻的奇偶两项做蝶形结构运算：比如N=8时就可以通过折中法多次两两分组，每组内部进行蝶形运算后的结果再进行蝶形运算：其中最低一级的分组通过如下方式进行：
+蝶形结构运算观察整个快速傅里叶变换的结构：可以得出如下结论：
+1.对于$N=2^m$,需要$m$级次蝶形结构的运算。2.对于第$m$级运算，组数为$2^N-m-1$。每一组的$q$总是被赋予-1和权重，权重表示为：
+W_{2^{m+1}}^r,r=0,1,2,\ldots,2^m-1
+快速傅里叶变换的计算量由于一点蝶形运算中不包含乘法，快速傅里叶变换通过应用这样的蝶形结构来削减乘法计算的次数。当长度 $N=2^m$ 时，简单分析可得快速傅里叶变换的计算量：
+\frac{N^2}{2^m} + m\frac{N}{2} = N + \frac{N}{2} \log_2 N频域抽取的快速傅里叶变换在频域内对离散傅里叶变换进行拆分，可以得到：
+
+\begin{aligned}
+X[2r] &= \sum_{n=0}^{N/2-1} x[n] W_N^{2nr} + \sum_{n=0}^{N/2-1} x[n+N/2] W_N^{2r(n+N/2)} \\
+&= \sum_{n=0}^{N/2-1} [x[n] + x[n+N/2]] W_{N/2}^{rn}, r = 0, 1, \ldots, N/2 - 1
+\end{aligned}同理对于频域内的奇数序列有：
+
+X[2r+1] = [x[n] - x[n+N/2]] W_{N/2}^{rn}, r = 0, 1, \ldots, N/2 - 1令 $g[n] = x[n] + x[n+N/2], h[n] = x[n] - x[n+N/2]$，得到频域抽取的快速傅里叶变换：
+X[2r] = \sum_{n=0}^{N/2-1} g[n] W_{N/2}^{rn}
+X[2r+1] = W_N^n \sum_{n=0}^{N/2-1} h[n] W_{N/2}^{rn}, r = 0, 1, \ldots, N/2 - 1同样符合蝶形结构：
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字信号处理08</title>
+    <url>/2025/06/23/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%8608/</url>
+    <content><![CDATA[数字滤波器的结构设计数字滤波器设计的核心是通过给定的时域或频域系统方程，在时域设计出对应的滤波器。数字系统的差分方程表示为：
+\sum_{k=0}^{N} a_{k} y[n-k] = \sum_{k=0}^{M} b_{k} x[n-k]从中提取出 $y[n]$，并简单变换后得到关于现态输出 $y[n]$ 的差分方程：
+
+y[n] = \frac{1}{a_{0}} (\sum_{k=0}^{M} b_{k} x[n-k] - \sum_{k=1}^{N} a_{k} y[n-k]), a_{0} \neq 0这个方程是数字滤波器设计的主要依据。根据加法的性质，这个差分方程中求和运算中的内部和外部的各部分可以调换计算次序，进而根据计算过程中每个部分计算次序的先后、滤波器的结构也随之不同。滤波器设计图的画法滤波器设计图的画法有两种：信号框图和信号流图。差分方程中的计算以加法、乘法、和时延为主，本小节也主要关注这两种画法中三种模块的表示方法。信号框图信号框图中加法器、乘法器和延迟器的画法如下图所示：
+信号流图信号流图中加法器、乘法器和延迟器的画法如下图所示：FIR系统的物理结构类型FIR系统的差分方程由于不含有除了$y[n]$的其他含$y$项，因此FIR系统中没有反馈。FIR系统的差分方程可以写作：
+y[n] = \sum_{k=0}^{M} b_k x[n - k]FIR系统的冲激响应即为系统差分方程的系数：
+
+h[n] =
+\begin{cases}
+b_n, & 0 \leq n \leq M \\
+0, & otherwise
+\end{cases}FIR系统的物理结构可以分为直接型（Direct form）和级联型（Cascade form）两种。直接型将FIR系统的差分方程中的求和直接拆开，有：
+
+y[n] = b_1 x[n - 1] + b_2 x[n - 2] + .. + b_M x[n - M]替换系统的冲激响应：
+y[n] = h[1] x[n - 1] + h[x] x[n - 2] + .. + h[M] x[n - M]系统的直接型结构为：如上图所示，在直接型结构中，$x[n]$分别做$M$次时延，每一次时延后的信号与对应系数相乘后，与前面的序列相加。
+硬件消耗因此，直接型需要：
+
+$M$个时延单元(也称为存储单元，用于存放之前的输入)
+$M+1$个乘法单元
+$M$个加法单元直接型虽然容易搭建，但是消耗器件较多。此外，由于加法器和延迟器都处于系统干路上，如果任何一个延迟器或者加法器出现故障，则整个滤波器系统将无法正常工作。级联型系统方程（z域）和系统的冲激响应之间存在如下关系：H(z)=\sum_{n=0}^{M}h[n]z^{-n}可以考虑构造若干个关于$z^{-n}$的多项式$(b{0k}+b{1k}z^{-1}+b{2k}z^{-2})$，通过若干个多项式相乘构造$\sum{n=0}^{M}h[n]z^{-n}$，即：
+H(z)=\sum_{n=}^{M}h[n]z^{-n}=\prod_{k=1}^{M_s}(b_{0k}+b_{1k}z^{-1}+b_{2k}z^{-2})其中$Ms=[(M+1)/2]$，向下取整。$b{1k}$表示第$k$个多项式的第1项系数，以此类推。那么有Z域下系统输入输出关系为：
+
+IIR系统的物理结构类型描述IIR系统的差分方程可以表示为：
+y[n] = \sum_{k=0}^{M} b_k x[n-k] + \sum_{k=1}^{N} a_k y[n-k]描述IIR系统的差分方程中除了$y[n]$外还有其他的含$y$项，即$y[n-m]$。因此IIR系统的物理结构中含有反馈信号。
+接型/直接型I描述IIR系统的差分方程在z域上可以表示为：
+
+Y(z) = H(z)X(z) = \left(\sum_{k=0}^{M} b_k z^{-k}\right) \frac{1}{1 - \sum_{k=1}^{N} a_k z^{-k}} X(z)设$H1(z) = \sum{k=0}^{M} bk z^{-k}, H_2 = \frac{1}{1 - \sum{k=1}^{N} a_k z^{-k}}$。可以发现$H_1(z)$没有极点，是FIR系统，$H_2(z)$是IIR系统。在直接型I中，$X(z)$首先与$H_1(z)$结合，有：
+V(z) = H_1(z)X(z)
+Y(z) = V(z)H_2(z)在时域中，直接型I将系统的差分方程分解为了两部分：
+y[n]=v[n]+\sum_{k=1}^Na_ky[n-k]v[n]=\sum_{k=0}^Mb_kx[n-k]
+可以看出$y[n]$是IIR系统，$v[n]$是一个FIR系统。
+
+直接型I的结构如下图所示，输入信号$x[n]$在通过若干个延迟器后的结果赋权相加，然后将此结果与输出信号$y[n]$的反馈信号通过若干个延迟器后的结果赋权相加，得到现态输出$y[n]$的结果。
+硬件消耗直接型I需要：
+
+M+N个加法单元
+M+N+1个乘法单元
+M+N+1个时延单元直接型I的优点是搭建简单，整个信号流图基本按照公式原本的样子即可搭建。缺点是所需要的硬件消耗较大。标准型/直接型II由，Y(z) = H_1(z)H_2(z)X(z) = (\sum_{k=0}^{M} b_kz^{-k})\frac{1}{1-\sum_{k=1}^{N} a_kz^{-k}}X(z)在直接型II中，X(z)首先与H2(z)结合：
+W(z) = X(z)H_2(z)Y(z) = W(z)H_1(z)即
+H(Z) = \frac{Y(Z)}{W(Z)}\frac{W(Z)}{X(Z)}在时域中表示为：w[n] = \sum_{k=1}^{N} a_k w[n - k] + x[n]
+y[n] = \sum_{k=0}^{M} b_k w[n - k]因此，虽然同直接型Ⅰ，$x[n]$信号也是通过若干延迟器后赋权相加，但是此时的权重不再是$b_N$而应当为$a_N$。赋权后的信号进入另一组延迟器后赋权$b_N$相加。下图表示了$M = N$时标准型Ⅱ的结构：进一步化简，由于两组延迟器存储的内容都是$w[n-k]$，因此两路信号可以共用一组延迟器，进而大幅度减小延迟器的消耗：硬件消耗直接型Ⅱ需要：
+M+N个加法单元
+M+N+1个乘法单元
+max(M,N)个时延单元相比于直接型Ⅰ，直接型Ⅱ大幅度减少了时延单元的消耗。级联型IIR系统的级联型原理与FIR系统的级联型原理相同，都是在Z域内把一个多项式分解为多个多项式的乘积。H(z)=G\prod_{k=1}^{N_s}\frac{1+b_{1k}'z^{-1}+b_{2k}'z^{-2}}{1-a_{1k}'z^{-1}-a_{2k}'z^{-2}}
+
+其中$Ns=\frac{N+1}{2}$ 但是IIR系统中每一个二级多项式单元$\frac{1+b{1k}’z^{-1}+b{2k}’z^{-2}}{1-a{1k}’z^{-1}-a_{2k}’z^{-2}}$可以选择用直接型Ⅰ或者直接型Ⅱ实现，但是通常仍然选择使用直接型Ⅱ以节省时延单元的使用个数。
+级联型的结构图如下所示：
+硬件消耗当 $M = N$ 时，级联型需要：
+
+$4 \frac{(N+1)}{2}$ 个加法单元
+$4 \frac{(N+1)}{2} + 1$ 个乘法单元
+$2 N_s$ 个时延单元相比于直接型，级联型结构中每一个子系统单元都是独立运行的，因此系统鲁棒性优于普通型。并联型由 $z$ 域下系统频率响应可以通过提取常数改写为：H(z) = \sum_{k=0}^{N_p} C_k z^{-k} + \sum_{k=1}^{N_s} \frac{e_{0k} + e_{1k} z^{-1}}{1 - a_{1k} z^{-1} - a_{2k} z^{-2}}
+
+其中 $M \geq N$ 时（即 $H(z)$ 是假分数时）存在第一项，$C_k$ 为常数，$N_p = M - N$。$N_S = \frac{N+1}{2}$。
+由于其后的求和符号，每一个二级多项式分式都可以独立计算，从而实现并行化。硬件消耗
+当 $M = N$ 时，级联型需要：
+
+$4 \frac{(N+1)}{2}$ 个加法单元
+$3 \frac{(N+1)}{2} + 1$ 个乘法单元
+$2 N_s$ 个时延单元
+
+FIR和IIR的物理结构类型的特点
+
+当 $h[n]$ 是一个对称或者反对称序列时，直接型的计算复杂度可以被减少。
+级联型和并联型系统的鲁棒性高于直接型。
+相比于FIR滤波器，IIR滤波器对量化噪声更敏感。
+级联型和并联型系统中的每一个子系统的运行情况相比于直接型更容易被观察。
 
 ]]></content>
       <categories>

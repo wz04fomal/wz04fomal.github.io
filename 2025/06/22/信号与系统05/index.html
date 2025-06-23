@@ -1,0 +1,425 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>信号与系统05 | Regulus🐧</title><meta name="author" content="Regulus🐧"><meta name="copyright" content="Regulus🐧"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="拉普拉斯变换傅里叶变换的局限性1.使用傅里叶变换的条件是(f(t))必须要满足狄利赫里条件，即必须要满足有界、绝对可积和有有限个间断点三个条件。 有些信号并不满足绝对可积的条件，因此这些信号不能被应用傅里叶变换。2.傅里叶变换中的无穷积分比较困难。对于不满足狄利赫里条件的信号，可以用拉普拉斯变换进行处理。 拉普拉斯变换的基本原理拉普拉斯变换的基本思想是将 $f(t)$ 乘上一个衰减系数： $AF$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信号与系统05">
+<meta property="og:url" content="https://www.wz04fomal.cn/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F05/index.html">
+<meta property="og:site_name" content="Regulus🐧">
+<meta property="og:description" content="拉普拉斯变换傅里叶变换的局限性1.使用傅里叶变换的条件是(f(t))必须要满足狄利赫里条件，即必须要满足有界、绝对可积和有有限个间断点三个条件。 有些信号并不满足绝对可积的条件，因此这些信号不能被应用傅里叶变换。2.傅里叶变换中的无穷积分比较困难。对于不满足狄利赫里条件的信号，可以用拉普拉斯变换进行处理。 拉普拉斯变换的基本原理拉普拉斯变换的基本思想是将 $f(t)$ 乘上一个衰减系数： $AF$">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://freeimghost.net/images/2025/04/28/8.default_cover_1.webp">
+<meta property="article:published_time" content="2025-06-22T13:18:54.785Z">
+<meta property="article:modified_time" content="2025-06-22T13:47:08.847Z">
+<meta property="article:author" content="Regulus🐧">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://freeimghost.net/images/2025/04/28/8.default_cover_1.webp"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "信号与系统05",
+  "url": "https://www.wz04fomal.cn/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F05/",
+  "image": "https://freeimghost.net/images/2025/04/28/8.default_cover_1.webp",
+  "datePublished": "2025-06-22T13:18:54.785Z",
+  "dateModified": "2025-06-22T13:47:08.847Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Regulus🐧",
+      "url": "https://www.wz04fomal.cn/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://freeimghost.net/images/2025/04/28/616196acf5923ec44fa65c7a9a2a0a74.png"><link rel="canonical" href="https://www.wz04fomal.cn/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F05/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '信号与系统05',
+  isHighlightShrink: true,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg" style="background-image: url(https://freeimghost.net/images/2025/04/27/music.webp);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://freeimghost.net/images/2025/04/28/CE48306503442C7387081DA47099D706.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post type-tags" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://freeimghost.net/images/2025/04/28/8.default_cover_1.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://freeimghost.net/images/2025/04/28/616196acf5923ec44fa65c7a9a2a0a74.png" alt="Logo"><span class="site-name">Regulus🐧</span></a><a class="nav-page-title" href="/"><span class="site-name">信号与系统05</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">信号与系统05</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-22T13:18:54.785Z" title="发表于 2025-06-22 21:18:54">2025-06-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-22T13:47:08.847Z" title="更新于 2025-06-22 21:47:08">2025-06-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-06-22 21:47:08&quot;}" hidden></div><h1 id="拉普拉斯变换"><a href="#拉普拉斯变换" class="headerlink" title="拉普拉斯变换"></a>拉普拉斯变换</h1><h2 id="傅里叶变换的局限性"><a href="#傅里叶变换的局限性" class="headerlink" title="傅里叶变换的局限性"></a>傅里叶变换的局限性</h2><p>1.使用傅里叶变换的条件是(f(t))必须要满足狄利赫里条件，即必须要满足有界、绝对可积和有有限个间断点三个条件。 有些信号并不满足绝对可积的条件，因此这些信号不能被应用傅里叶变换。<br>2.傅里叶变换中的无穷积分比较困难。<br>对于不满足狄利赫里条件的信号，可以用拉普拉斯变换进行处理。</p>
+<h2 id="拉普拉斯变换的基本原理"><a href="#拉普拉斯变换的基本原理" class="headerlink" title="拉普拉斯变换的基本原理"></a>拉普拉斯变换的基本原理</h2><p>拉普拉斯变换的基本思想是将 $f(t)$ 乘上一个衰减系数： $AF$ (Attenuation factor) 以改善 $f(t)$ 的收敛性，使得 $f(t)AF$ 满足狄利赫里条件。<br>通用的衰减系数是 $e^{-\sigma t}$。<br>因此 $f(t)AF$ 的傅里叶变换写作：</p>
+<script type="math/tex; mode=display">F(\omega) = F[(f(t)e^{-\sigma t})] = \int f(t)e^{-\sigma t}e^{-j\omega t}dt = \int f(t)e^{-(\sigma+j\omega)t}dt</script><p>令 $s = (\sigma+j\omega)$，得到拉普拉斯变换的定义式：</p>
+<script type="math/tex; mode=display">
+L[f(t)] = F(s) = F(\sigma+j\omega) = \int f(t)e^{-st}dt</script><p>对于 LTI 系统，$f(t) = 0, t &lt; 0$，因此：</p>
+<script type="math/tex; mode=display">L[f(t)] = F(s) = \int_0^\infty f(t)e^{-st}dt</script><p><strong>存在条件/收敛域</strong><br>保证拉普拉斯变换存在的条件是 $f(t)AF$ 满足满足狄利赫里条件。使得拉普拉斯变换成立的定义域称为收敛域 (RoC)。其应当是使得 $F(s)$ 存在的 $s$ 的范围。即 $f(t)$ 应当满足：</p>
+<script type="math/tex; mode=display">
+\lim_{t \to \infty} f(t)e^{-\sigma t} = 0</script><p><strong>拉普拉斯反变换</strong><br>傅里叶反变换的定义式：</p>
+<script type="math/tex; mode=display">f(t) = \frac{1}{2\pi} \int F(\omega)e^{j\omega t}d\omega</script><p>带入 $f(t)e^{-\sigma t}$：</p>
+<script type="math/tex; mode=display">
+f(t)e^{-\sigma t} = \frac{1}{2\pi} \int F(\sigma+j\omega)e^{j\omega t}d\omega</script><p>将两边同时乘上 $e^{\sigma t}$：</p>
+<script type="math/tex; mode=display">f(t) = \frac{1}{2\pi} \int F(\sigma+j\omega)e^{(\sigma+j\omega)t}d\omega</script><p>带入 $s = \sigma+j\omega$ 并替换积分域，得到拉普拉斯反变换的定义式：</p>
+<script type="math/tex; mode=display">f(t)=\frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty}F(s)e^{st}ds</script><p>拉普拉斯变换对包含拉普拉斯变换和反变换的定义式。<br>拉普拉斯变换的一般形式和反变换求解<br>$f(t)$经拉普拉斯变换后的$F(s)$可以用多项式分数的形式进行表达：</p>
+<script type="math/tex; mode=display">
+F(s)=\frac{A(s)}{B(s)}=\frac{\sum a_ms^m}{\sum b_ns^n}</script><p>倘若$m&lt;n$，则$F(s)$是一个真分数，可以上下做多项式除法，得到：</p>
+<script type="math/tex; mode=display">F(s)=\frac{a_m(s-z_1)(s-z_2)L(s-z_m)}{b_n(s-p_1)(s-p_2)L(s-p_n)}</script><p>其中$z$表示$F(s)$的时域变换$f(t)$中的零点，$p$表示$F(s)$的时域变换$f(t)$中的指数系数，称为极点(Pole)。<br>真分数意味着$F(s)$在无穷处收敛的概率很大，因此拉普拉斯变换后的式子具有高稳定性的特点。<br>在单阶实数极点（Single-order real poles）的条件下：</p>
+<script type="math/tex; mode=display">
+F(s)=\frac{A(s)}{(s-p_1)(s-p_2)L(s-p_n)}</script><p>那么$F(s)$经过多项式除法/因式分解之后可以写作：</p>
+<script type="math/tex; mode=display">F(s)=\sum_{i=1}^{\frac{k_i}{s-p_i}}+L</script><p>可以得到：</p>
+<script type="math/tex; mode=display">
+f(t)=\sum_{i=1}^n k_ie^{p_it}</script><p>另外两种关于$F(s)$极点的情况：</p>
+<ol>
+<li>共轭复数</li>
+<li>多根<br>本节不会讨论</li>
+</ol>
+<h1 id="拉普拉斯变换的性质"><a href="#拉普拉斯变换的性质" class="headerlink" title="拉普拉斯变换的性质"></a>拉普拉斯变换的性质</h1><ol>
+<li>线性（同傅里叶变换）</li>
+<li>变换操作</li>
+</ol>
+<ul>
+<li>时移特性（同傅里叶变换）</li>
+<li>频移特性:$f(t)e^{-\alpha t}\rightarrow F(s+\alpha)$</li>
+<li>尺度变换（同傅里叶变换）</li>
+</ul>
+<ol>
+<li>积分和微分（时域）</li>
+</ol>
+<ul>
+<li>微分</li>
+<li>一阶微分:$\frac{df(t)}{dt}\rightarrow sF(s)-f(0_{-})$</li>
+<li>二阶微分:$\frac{d^{2}f(t)}{dt^{2}}\rightarrow s[sF(s)-f(0<em>{-})]-f^{\prime}(0</em>{-})$</li>
+<li>积分<script type="math/tex; mode=display">\int_{-\infty}^{t}f(\tau)d\tau\rightarrow\frac{F(s)}{s}+\frac{f^{(-1)}(0_{-})}{s}</script>证明过程是将积分域分解为$[-\infty,0]$（表示初始状态）和$[0,t]$两段。</li>
+</ul>
+<ol>
+<li>积分和微分（频域）</li>
+</ol>
+<ul>
+<li>n阶微分<script type="math/tex; mode=display">
+L[t^{n}f(t)]=(-1)^{n}\frac{d^{n}F(s)}{ds^{n}}</script></li>
+<li>积分<script type="math/tex; mode=display">L[\frac{f(t)}{t}]=\int_{s}^{\infty}F(s)ds</script><strong>初值定理</strong><br>如果$f(t)$可积可被拉普拉斯变换，$f(t)$在$0_{+}$时刻的值（即初值）可以通过如下公式求得：<script type="math/tex; mode=display">
+f(0_{+})=lim_{s\rightarrow\infty}sF(s)</script><strong>终值定理</strong><br>如果$f(t)$可积可被拉普拉斯变换，$f(t)$在$\infty$时刻的值（即初值）可以通过如下公式求得：<script type="math/tex; mode=display">lim_{t\rightarrow\infty}f(t)=lim_{s\rightarrow0}sF(s)</script></li>
+</ul>
+<p><strong>卷积理论</strong></p>
+<p>拉普拉斯变换的卷积理论与傅里叶变换的卷积理论大抵相同，但是要注意对于时域中乘法的变换在频域中卷积项的参数是$\frac{1}{2\pi i}$。</p>
+<h1 id="拉普拉斯变换法求解系统微分方程"><a href="#拉普拉斯变换法求解系统微分方程" class="headerlink" title="拉普拉斯变换法求解系统微分方程"></a>拉普拉斯变换法求解系统微分方程</h1><h2 id="系统方程与全响应"><a href="#系统方程与全响应" class="headerlink" title="系统方程与全响应"></a>系统方程与全响应</h2><ol>
+<li>以时域函数 $f(t)$ 的拉普拉斯变换 $F(s)$ 的微分特性：<blockquote>
+<p>一阶微分：$\frac{df(t)}{dt} \rightarrow sF(s) - f(0<em>{-})$<br>二阶微分：$\frac{d^{2}f(t)}{dt^{2}} \rightarrow s[sF(s) - f(0</em>{-})] - f’(0_{-})$<br>可以将微分方程以拉普拉斯变换从时域变换至频域。<br>对于描述系统的微分方程将其做拉普拉斯变换：</p>
+<script type="math/tex; mode=display">F_{out}(R(s),s) = F_{in}(E(s),s)</script></blockquote>
+</li>
+<li>带入初始条件和给定的题目条件中的一些 $r(t)$ 在特定时刻下的值，得到方程</li>
+<li>解出频域内的 $R(s)$</li>
+<li>用待定系数法展开多项式分式并用拉普拉斯反变换得到 $r(t)$<h2 id="零输入响应"><a href="#零输入响应" class="headerlink" title="零输入响应"></a>零输入响应</h2>法1<br>对于描述系统的微分方程，整理出关于 $R(s)$ 的等式：<script type="math/tex; mode=display">
+R(s) = F_{多项式分式}(r(t_{0}),s) + F_{多项式分式}(E(s),s)</script>其中含有某些初始状态 $r(t<em>{0})$ 的多项式分式是零输入响应，含有 $E(s)$ 的多项式分式是零状态响应。选取含有 $r(t</em>{0})$ 的多项式分式，带入初始状态即可得到零输入响应 $R<em>{zi}(s)$。<br>利用拉普拉斯反变换得到 $r</em>{zi}(t)$。<br>法2</li>
+<li><p>令 $E(s) = 0$，重新写出此时的系统微分方程：</p>
+<script type="math/tex; mode=display">F_{out}(R(s),s) = 0</script></li>
+<li><p>带入初始条件和给定的题目条件中的一些 $r(t)$ 在特定时刻下的值，得到方程</p>
+</li>
+<li><p>解出频域内的 $R_{zi}(s)$</p>
+</li>
+<li><p>用待定系数法展开多项式分式并用拉普拉斯反变换得到 $r_{zi}(t)$</p>
+<h2 id="零状态响应"><a href="#零状态响应" class="headerlink" title="零状态响应"></a>零状态响应</h2><p>法1<br>对于描述系统的微分方程，整理出关于$R(s)$的等式：</p>
+<script type="math/tex; mode=display">R(s) = F_{多项式分式}(r(t_0), s) + F_{多项式分式}(E(s), s)</script><p>其中含有某些初始状态$r(t<em>0)$的多项式分式是零输入响应，含有$E(s)$的多项式分式是零状态响应。<br>选取带有系统输入$E(s)$的多项式分式，由$L(\delta(t)) \to 1$带入$E(s) = 1$，得到系统的零状态响应$R</em>{zs}(s)$。<br>利用拉普拉斯反变换得到$r<em>{zs}(t)$<br>法2<br>求解到$r(t)$与$r</em>{iz}(t)$后，利用</p>
+<script type="math/tex; mode=display">
+r_{zs}(t) = r(t) - r_{iz}(t)</script><p>间接求解到$r_{zs}(t)$。</p>
+<h1 id="用拉普拉斯变换分析电路"><a href="#用拉普拉斯变换分析电路" class="headerlink" title="用拉普拉斯变换分析电路"></a>用拉普拉斯变换分析电路</h1><p>将电路中主要元件的电压电流关系进行拉普拉斯变换：<br>电阻：</p>
+<script type="math/tex; mode=display">R = \frac{V(s)}{I}</script><p>电容：<br>由时域：$v(t) = \frac{1}{C} \int i(t) dt$</p>
+<script type="math/tex; mode=display">
+V(s) = I(s) \frac{1}{sC} + \frac{1}{s} v_c(0_-)</script><p>电容的阻抗（容抗）：</p>
+<script type="math/tex; mode=display">Z_c = \frac{1}{sC}</script><p>电感：由时域：$v(t) = L \frac{di(t)}{dt}$</p>
+<script type="math/tex; mode=display">
+V(s) = I(s) Ls - Li(0_-)</script></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>信号与系统05</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://www.wz04fomal.cn/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F05/">https://www.wz04fomal.cn/2025/06/22/信号与系统05/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>Regulus🐧</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2025-06-22</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2025-06-22</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="https://freeimghost.net/images/2025/04/28/8.default_cover_1.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F04/" title="信号与系统04"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://freeimghost.net/images/2025/04/28/6.default_cover_1.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">信号与系统04</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/2025/06/22/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F06/" title="信号与系统06"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://freeimghost.net/images/2025/04/28/4.default_cover_1.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">信号与系统06</div></div><div class="info-2"><div class="info-item-1">Z变换Z变换的基本原理z变换的本质是通过采样使得离散信号可以被拉普拉斯变换，因此z变换的对象是离散信号/序列。其具体过程如下：由第六讲中提到的采样定理，对于连续序列x(t)，对其做自然采样： x_s(t) = x(t)\delta_T(t) \\ = x(t)\sum \delta(t-nT) \\ = \sum x(nT)\delta(t-nT)对其做拉普拉斯变换： X_s = L[x_s(t)] L[x_s(t)] = L[\sum x(nT)\delta(t-nT)] \\ = \sum x(nT)L[\delta(t-nT)] \\ = \sum x(nT)e^{-snT}令$z=e^{sT}$，得到z变换的定义式：  X(z) = \sum x(n)z^{-n}在LTI系统中$n &gt; 0$，z变换的定义式可以写作： X(z) = \sum_{n=0}^{\infty} x(n)z^{-n}存在条件/收敛域使得序列$x(n)$能够被z变换的条件是序列$x(n)$收敛，即：  \sum |x(n)z^{-n}| <...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://freeimghost.net/images/2025/04/28/CE48306503442C7387081DA47099D706.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Regulus🐧</div><div class="author-info-description">Future is now 🍭🍭🍭</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>前往小家</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/zhuoer0401" target="_blank" title="Github"><i class="fab fa-github" style="color: #1E90FF;"></i></a><a class="social-icon" href="/zhuoer0401@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://github.com/zhuoer0401" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #FFFF00;"></i></a><a class="social-icon" href="https://github.com/zhuoer0401" target="_blank" title="QQ"><i class="fab fa-weixin" style="color: ##7CFC00;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告栏</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%8F%98%E6%8D%A2"><span class="toc-text">拉普拉斯变换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-text">傅里叶变换的局限性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%8F%98%E6%8D%A2%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-text">拉普拉斯变换的基本原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%8F%98%E6%8D%A2%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-text">拉普拉斯变换的性质</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%8F%98%E6%8D%A2%E6%B3%95%E6%B1%82%E8%A7%A3%E7%B3%BB%E7%BB%9F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="toc-text">拉普拉斯变换法求解系统微分方程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%85%A8%E5%93%8D%E5%BA%94"><span class="toc-text">系统方程与全响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E8%BE%93%E5%85%A5%E5%93%8D%E5%BA%94"><span class="toc-text">零输入响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E7%8A%B6%E6%80%81%E5%93%8D%E5%BA%94"><span class="toc-text">零状态响应</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%8F%98%E6%8D%A2%E5%88%86%E6%9E%90%E7%94%B5%E8%B7%AF"><span class="toc-text">用拉普拉斯变换分析电路</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By Regulus🐧</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script async src="//at.alicdn.com/t/c/font_4937880_n4br5xjbkzf.js"></script><script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><div class="aplayer no-destroy" data-id="4952259193" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://www.wz04fomal.cn/categories/学习笔记/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 学习笔记 (18)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item" style="visibility: hidden"></div><a class="magnet_link_more"  href="https://www.wz04fomal.cn/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://npm.elemecdn.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2022/10/28/2025-4-27第一篇文章/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://freeimghost.net/images/2025/04/28/4.default_cover_1.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-28</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2022/10/28/2025-4-27第一篇文章/&quot;);" href="javascript:void(0);" alt="">第一篇文章</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2022/10/28/2025-4-27第一篇文章/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '2s');
+    arr[i].setAttribute('data-wow-delay', '1s');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '2');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
