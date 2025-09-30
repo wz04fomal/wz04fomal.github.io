@@ -393,13 +393,13 @@ div#archive {
 
 /* 个人信息卡片背景图 */
 [data-theme="light"] #aside-content > .card-widget.card-info {
-  background-image: url(https://freeimghost.net/images/2025/06/04/a7a0f07345944a9e0169456994c75c71d21ceb2a2dfe773837c70086.webp);
+  background-image: url(https://freeimghost.com/images/2025/06/04/a7a0f07345944a9e0169456994c75c71d21ceb2a2dfe773837c70086.webp);
   background-repeat: no-repeat;
   background-attachment: inherit;
   background-size: 100%;
 }
 [data-theme="dark"] #aside-content > .card-widget.card-info {
-  background-image: url(https://freeimghost.net/images/2025/06/03/61dc74e1e3ebafcce8054028e95474fd731e95a6.webp);
+  background-image: url(https://freeimghost.com/images/2025/06/03/61dc74e1e3ebafcce8054028e95474fd731e95a6.webp);
   background-repeat: no-repeat;
   background-attachment: inherit;
   background-size: 100%;
